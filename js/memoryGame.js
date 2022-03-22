@@ -3,8 +3,10 @@ controlButtonsSpan.onclick = () => {
   let yourName = prompt("Whats Your Name ?");
   if (yourName == null || yourName == "") {
     document.querySelector(".info-container .name span ").innerHTML = "Player";
+    document.querySelector(".info h3 span ").innerHTML = "Player";
   } else {
     document.querySelector(".info-container .name span ").innerHTML = yourName;
+    document.querySelector(".info h3 span ").innerHTML = yourName;
   }
   document.querySelector(".control-buttons").remove();
 };
