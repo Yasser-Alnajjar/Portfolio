@@ -166,64 +166,64 @@ function clickMe_toScroll(e, o) {
   };
 }
 clickMe_toScroll(liHome, 0), clickMe_toScroll(scrollUp, 0);
-let box = document.querySelector(".box"),
-  html = document.querySelector(".html"),
-  css = document.querySelector(".css"),
-  bootstrap = document.querySelector(".bootstrap"),
-  js = document.querySelector(".js"),
-  jquery = document.querySelector(".jquery"),
-  sass = document.querySelector(".sass"),
-  github = document.querySelector(".github"),
-  pug = document.querySelector(".pug"),
-  gulp = document.querySelector(".gulp");
-function moveDivRight(e, o) {
-  document.documentElement.scrollTop > box.offsetTop + 1e3
-    ? (e.style.left = "0px")
-    : (e.style.left = o);
-}
-function moveDivLeft(e, o) {
-  document.documentElement.scrollTop > box.offsetTop + 1e3
-    ? (e.style.right = "0px")
-    : (e.style.right = o);
-}
-function moveDivTop(e, o) {
-  document.documentElement.scrollTop > box.offsetTop + 1e3
-    ? (e.style.bottom = "0px")
-    : (e.style.bottom = o);
-}
-function checkIfDivIsShow() {
-  document.documentElement.scrollTop > box.offsetTop + 1e3 &&
-    ((html.style.left = "0px"),
-    (css.style.bottom = "0px"),
-    (bootstrap.style.bottom = "0px"),
-    (js.style.right = "0px"),
-    (jquery.style.left = "0px"),
-    (sass.style.bottom = "0px"),
-    (github.style.bottom = "0px"),
-    (pug.style.right = "0px"),
-    (gulp.style.bottom = "0px"));
-}
-function arrowShow() {
-  document.documentElement.scrollTop < 400
-    ? (scrollUp.style.opacity = 0)
-    : document.documentElement.scrollTop > home.offsetTop &&
-      (scrollUp.style.opacity = 1);
-}
-window.onscroll = function () {
-  moveDivRight(html, "-500px"),
-    moveDivTop(css, "500px"),
-    moveDivTop(bootstrap, "500px"),
-    moveDivLeft(js, "-500px"),
-    moveDivRight(jquery, "-500px"),
-    moveDivTop(sass, "-500px"),
-    moveDivTop(github, "-500px"),
-    moveDivLeft(pug, "-500px"),
-    moveDivTop(gulp, "-500px"),
-    document.documentElement.scrollTop < 400
-      ? (scrollUp.style.opacity = 0)
-      : document.documentElement.scrollTop > home.offsetTop &&
-        (scrollUp.style.opacity = 1);
-};
+// let box = document.querySelector(".box"),
+//   html = document.querySelector(".html"),
+//   css = document.querySelector(".css"),
+//   bootstrap = document.querySelector(".bootstrap"),
+//   js = document.querySelector(".js"),
+//   jquery = document.querySelector(".jquery"),
+//   sass = document.querySelector(".sass"),
+//   github = document.querySelector(".github"),
+//   pug = document.querySelector(".pug"),
+//   gulp = document.querySelector(".gulp");
+// function moveDivRight(e, o) {
+//   document.documentElement.scrollTop > box.offsetTop + 1e3
+//     ? (e.style.left = "0px")
+//     : (e.style.left = o);
+// }
+// function moveDivLeft(e, o) {
+//   document.documentElement.scrollTop > box.offsetTop + 1e3
+//     ? (e.style.right = "0px")
+//     : (e.style.right = o);
+// }
+// function moveDivTop(e, o) {
+//   document.documentElement.scrollTop > box.offsetTop + 1e3
+//     ? (e.style.bottom = "0px")
+//     : (e.style.bottom = o);
+// }
+// function checkIfDivIsShow() {
+//   document.documentElement.scrollTop > box.offsetTop + 1e3 &&
+//     ((html.style.left = "0px"),
+//     (css.style.bottom = "0px"),
+//     (bootstrap.style.bottom = "0px"),
+//     (js.style.right = "0px"),
+//     (jquery.style.left = "0px"),
+//     (sass.style.bottom = "0px"),
+//     (github.style.bottom = "0px"),
+//     (pug.style.right = "0px"),
+//     (gulp.style.bottom = "0px"));
+// }
+// function arrowShow() {
+//   document.documentElement.scrollTop < 400
+//     ? (scrollUp.style.opacity = 0)
+//     : document.documentElement.scrollTop > home.offsetTop &&
+//       (scrollUp.style.opacity = 1);
+// }
+// window.onscroll = function () {
+//   moveDivRight(html, "-500px"),
+//     moveDivTop(css, "500px"),
+//     moveDivTop(bootstrap, "500px"),
+//     moveDivLeft(js, "-500px"),
+//     moveDivRight(jquery, "-500px"),
+//     moveDivTop(sass, "-500px"),
+//     moveDivTop(github, "-500px"),
+//     moveDivLeft(pug, "-500px"),
+//     moveDivTop(gulp, "-500px"),
+//     document.documentElement.scrollTop < 400
+//       ? (scrollUp.style.opacity = 0)
+//       : document.documentElement.scrollTop > home.offsetTop &&
+//         (scrollUp.style.opacity = 1);
+// };
 // checkIfDivIsShow();
 // arrowShow();
 function skillsRender(array) {
