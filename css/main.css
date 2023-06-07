@@ -294,7 +294,7 @@ h1 {
 }
 .details {
   padding-top: var(--section-padding);
-  padding-bottom: var(--section-padding);
+
   margin-left: var(--section-margin);
 }
 .details .title-container {
