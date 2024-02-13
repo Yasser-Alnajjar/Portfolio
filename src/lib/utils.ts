@@ -1,6 +1,11 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
+}
+export function clamp(number: number, a: number, b: number): number {
+  let min = Math.min(a, b);
+  let max = Math.max(a, b);
+  return Number(Math.min(Math.max(number, min), max));
 }
