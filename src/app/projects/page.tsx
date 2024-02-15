@@ -1,45 +1,40 @@
-import { Card } from "@/components/Card";
+import { projects } from "@/data/projects";
 import { IProject } from "@/interfaces";
 import Image from "next/image";
 
-async function getProjects() {
-  const res = await fetch("http://localhost:3000/api/projects");
-  const data = await res.json();
-  return data;
-}
 export default async function Home() {
-  const projects = await getProjects();
-
   return (
-    <main className="container">
-      <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4">
-        {projects.map((project: IProject) => (
-          <Card key={project.name} className="w-[230px]">
-            <div className="relative z-10 flex h-[150px] w-[230px]  items-center justify-center rounded-full  bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image
-                src={project.logo}
-                alt={project.name}
-                className="h-full w-full rounded-xl"
-              />
-            </div>
-            <span className="max-w-[219px]">
-              <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                <a target="_blank" href={project.link}>
-                  {project.name}
-                </a>
-              </h2>
-              <Card.Description>{project.description}</Card.Description>
-              <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-pink-600 dark:text-zinc-200">
-                <span className="h-6 w-6 flex-none">
-                  <LinkIcon />
-                </span>
-                <span className="ml-2">Live Preview</span>
-              </p>
+    <section className="container grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4">
+      {projects.map((project: IProject) => (
+        <div key={project.name} className="w-[230px]">
+          <div className="relative z-10 flex h-[150px] w-[230px]  items-center justify-center rounded-full  bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <Image
+              src={project.logo}
+              alt={project.name}
+              className="h-full w-full rounded-xl"
+            />
+          </div>
+          <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+            <a target="_blank" href={project.link}>
+              {project.name}
+            </a>
+          </h2>
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+            {project.description}
+          </p>
+          <a
+            href={project.link}
+            target="_blank"
+            className="mt-4 flex text-sm font-medium text-zinc-400 transition hover:text-primary dark:hover:text-primary dark:text-zinc-200"
+          >
+            <span className="h-6 w-6 flex-none">
+              <LinkIcon />
             </span>
-          </Card>
-        ))}
-      </div>
-    </main>
+            <span className="ml-2">Live Preview</span>
+          </a>
+        </div>
+      ))}
+    </section>
   );
 }
 function LinkIcon() {
