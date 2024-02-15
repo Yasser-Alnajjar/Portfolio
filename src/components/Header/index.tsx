@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { Fragment, ReactNode } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { ChevronDownIcon, SidebarCloseIcon } from "lucide-react";
+import { ChevronDownIcon, XCircle } from "lucide-react";
 import { navLinks } from "@/data";
 
 function NavItem({ href, children }: { href: string; children: ReactNode }) {
@@ -79,7 +79,7 @@ function MobileNavigation({ ...props }) {
           >
             <div className="flex flex-row-reverse items-center justify-between">
               <Popover.Button aria-label="Close menu" className="-m-1 p-1">
-                <SidebarCloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
+                <XCircle className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
               </Popover.Button>
               <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
                 Navigation
@@ -108,7 +108,7 @@ function MobileNavigation({ ...props }) {
 }
 export function Header() {
   return (
-    <header className="relative z-50 flex justify-center gap-5 py-5">
+    <header className="sticky top-0 z-50 flex justify-center items-center gap-5 py-4">
       <MobileNavigation className="md:hidden" />
       <DesktopNavigation className="hidden md:block" />
       <ThemeToggle />

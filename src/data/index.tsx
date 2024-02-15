@@ -1,7 +1,9 @@
-export const navLinks: navLink[] = [
+import { INavLink } from "@/interfaces";
+
+export const navLinks: INavLink[] = [
   {
     href: "/",
-    name: "About",
+    name: "Home",
   },
   {
     href: "/skills",
@@ -16,7 +18,26 @@ export const navLinks: navLink[] = [
     name: "Hire Me",
   },
 ];
-type navLink = {
-  href: string;
-  name: string;
-};
+
+export const resume = [
+  {
+    company: "Active4Web",
+    title: "React Front-end Developer",
+    start: "05/2023",
+    end: "11/2023",
+  },
+  {
+    company: "Errasoft Academy",
+    title: "React Front-end Developer",
+    start: "03/2023",
+    end: "Present",
+  },
+  {
+    company: "MEC Academy",
+    title: "React Front-end Developer",
+    start: "01/2023",
+    end: "Present",
+  },
+];
+
+// end: "Present",
