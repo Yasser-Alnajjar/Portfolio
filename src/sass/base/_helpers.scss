@@ -1,0 +1,122 @@
+.border {
+  border: 1px solid;
+}
+@each $propName, $prop in $flexProps {
+  .justify-#{$propName} {
+    justify-content: $prop;
+  }
+  .align-#{$propName} {
+    align-items: $prop;
+  }
+}
+
+@each $order in $orders {
+  .order-#{$order} {
+    order: $order;
+  }
+}
+
+@each $space in $spaces {
+  // Padding
+  .p-0 {
+    padding: 0;
+  }
+  .p-#{$space} {
+    padding: $unit * $space;
+  }
+  .px-#{$space} {
+    padding-left: $unit * $space;
+    padding-right: $unit * $space;
+  }
+  .py-#{$space} {
+    padding-top: $unit * $space;
+    padding-bottom: $unit * $space;
+  }
+  .pl-#{$space} {
+    padding-left: $unit * $space;
+  }
+  .pr-#{$space} {
+    padding-right: $unit * $space;
+  }
+  .pt-#{$space} {
+    padding-top: $unit * $space;
+  }
+  .pb-#{$space} {
+    padding-bottom: $unit * $space;
+  }
+  // Margin
+  .m-0 {
+    margin: 0;
+  }
+  .m-#{$space} {
+    margin: $unit * $space;
+  }
+  .mx-#{$space} {
+    margin-left: $unit * $space;
+    margin-right: $unit * $space;
+  }
+  .my-#{$space} {
+    margin-top: $unit * $space;
+    margin-bottom: $unit * $space;
+  }
+  .ml-#{$space} {
+    margin-left: $unit * $space;
+  }
+  .mr-#{$space} {
+    margin-right: $unit * $space;
+  }
+  .mt-#{$space} {
+    margin-top: $unit * $space;
+  }
+  .mb-#{$space} {
+    margin-bottom: $unit * $space;
+  }
+  .gap-#{$space} {
+    gap: $unit * $space;
+  }
+  .border-#{$space} {
+    border-width: #{$space}px;
+  }
+  .fs-#{$space} {
+    font-size: $unit * $space;
+  }
+}
+
+@each $class, $font-size in $fontSize {
+  .text-#{$class} {
+    font-size: $font-size;
+  }
+}
+
+@each $round, $pixel in $rounded {
+  .rounded {
+    border-radius: $unit;
+  }
+  .rounded-#{$round} {
+    border-radius: $pixel;
+  }
+  .rounded-r-#{$round} {
+    border-top-right-radius: $pixel;
+    border-bottom-right-radius: $pixel;
+  }
+  .rounded-l-#{$round} {
+    border-top-left-radius: $pixel;
+    border-bottom-left-radius: $pixel;
+  }
+  .rounded-t-#{$round} {
+    border-top-left-radius: $pixel;
+    border-top-right-radius: $pixel;
+  }
+  .rounded-b-#{$round} {
+    border-bottom-left-radius: $pixel;
+    border-bottom-right-radius: $pixel;
+  }
+}
+
+$directions: center start end;
+
+@each $direction in $directions {
+  .text-#{$direction} {
+    text-align: $direction;
+  }
+}

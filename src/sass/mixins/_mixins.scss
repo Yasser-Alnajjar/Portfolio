@@ -1,0 +1,19 @@
+@mixin flex($align: start, $justify: start, $dir: row) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $dir;
+}
+
+@mixin media($screen, $min-width, $unit: 4) {
+  @media (min-width: $min-width) {
+    @for $i from 1 through 12 {
+      // .col-sm-#{$i} {
+      // width: calc(100% / 12 * $i - 0.5rem);
+      // }
+      .col-#{$screen}-#{$i} {
+        width: calc(100% / 12 * $i - 0.5rem);
+      }
+    }
+  }
+}

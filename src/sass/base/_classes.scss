@@ -1,0 +1,50 @@
+.flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.cursor-default {
+  cursor: default;
+}
+.not-allowed {
+  cursor: not-allowed;
+}
+.no-drop {
+  cursor: no-drop;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.w-full {
+  width: 100%;
+}
+.block {
+  display: block !important;
+}
+.d-none {
+  display: none !important;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}

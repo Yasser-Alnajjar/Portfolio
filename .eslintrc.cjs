@@ -1,4 +1,3 @@
-const path = require('node:path');
 module.exports = {
   root: true,
   env: {
@@ -39,7 +38,9 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'react/button-has-type': ['off'],
     'no-import-assign': ['off'],
+    'jsx-a11y/control-has-associated-label': ['off'],
     'react/prop-types': [
       'off',
       {

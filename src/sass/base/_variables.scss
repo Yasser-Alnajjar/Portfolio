@@ -1,0 +1,317 @@
+// Colors
+$light: #ffffff;
+$dark: #1c1c1c;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+$primary: #0d6efd;
+$indigo: #6610f2;
+$pink: #d63384;
+$danger: #dc3545;
+$orange: #fd7e14;
+$warning: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+
+$primary-100: #cfe2ff;
+$primary-200: #9ec5fe;
+$primary-300: #6ea8fe;
+$primary-400: #3d8bfd;
+$primary-500: #0d6efd;
+$primary-600: #0a58ca;
+$primary-700: #084298;
+$primary-800: #052c65;
+$primary-900: #031633;
+
+$white-100: #ffffff;
+$white-200: #f1f1f1;
+$white-300: #f2f2f2;
+$white-400: #f3f3f3;
+$white-500: #f7f7f7;
+$white-600: #cccccc;
+$white-700: #999999;
+$white-800: #666666;
+$white-900: #333333;
+
+$dark-100: #d2d2d2;
+$dark-200: #a4a4a4;
+$dark-300: #777777;
+$dark-400: #494949;
+$dark-500: #1c1c1c;
+$dark-600: #161616;
+$dark-700: #111111;
+$dark-800: #0b0b0b;
+$dark-900: #060606;
+
+$danger-100: #f8d7da;
+$danger-200: #f1aeb5;
+$danger-300: #ea868f;
+$danger-400: #e35d6a;
+$danger-500: #dc3545;
+$danger-600: #b02a37;
+$danger-700: #842029;
+$danger-800: #58151c;
+$danger-900: #2c0b0e;
+
+$indigo-100: #e0cffc;
+$indigo-200: #c29ffa;
+$indigo-300: #a370f7;
+$indigo-400: #8540f5;
+$indigo-500: #6610f2;
+$indigo-600: #520dc2;
+$indigo-700: #3d0a91;
+$indigo-800: #290661;
+$indigo-900: #140330;
+
+$pink-100: #f7d6e6;
+$pink-200: #efadce;
+$pink-300: #e685b5;
+$pink-400: #de5c9d;
+$pink-500: #d63384;
+$pink-600: #ab296a;
+$pink-700: #801f4f;
+$pink-800: #561435;
+$pink-900: #2b0a1a;
+
+$orange-100: #ffe5d0;
+$orange-200: #fecba1;
+$orange-300: #feb272;
+$orange-400: #fd9843;
+$orange-500: #fd7e14;
+$orange-600: #ca6510;
+$orange-700: #984c0c;
+$orange-800: #653208;
+$orange-900: #331904;
+
+$warning-100: #fff3cd;
+$warning-200: #ffe69c;
+$warning-300: #ffda6a;
+$warning-400: #ffcd39;
+$warning-500: #ffc107;
+$warning-600: #cc9a06;
+$warning-700: #997404;
+$warning-800: #664d03;
+$warning-900: #332701;
+
+$green-100: #d1e7dd;
+$green-200: #a3cfbb;
+$green-300: #75b798;
+$green-400: #479f76;
+$green-500: #198754;
+$green-600: #146c43;
+$green-700: #0f5132;
+$green-800: #0a3622;
+$green-900: #051b11;
+
+$teal-100: #d2f4ea;
+$teal-200: #a6e9d5;
+$teal-300: #79dfc1;
+$teal-400: #4dd4ac;
+$teal-500: #20c997;
+$teal-600: #1aa179;
+$teal-700: #13795b;
+$teal-800: #0d503c;
+$teal-900: #06281e;
+
+$cyan-100: #cff4fc;
+$cyan-200: #9eeaf9;
+$cyan-300: #6edff6;
+$cyan-400: #3dd5f3;
+$cyan-500: #0dcaf0;
+$cyan-600: #0aa2c0;
+$cyan-700: #087990;
+$cyan-800: #055160;
+$cyan-900: #032830;
+
+$dark-gray-100: #212529;
+$dark-gray-200: #343a40;
+$dark-gray-300: #495057;
+$dark-gray-400: #6c757d;
+$dark-gray-500: #adb5bd;
+$dark-gray-600: #ced4da;
+$dark-gray-700: #dee2e6;
+$dark-gray-800: #e9ecef;
+$dark-gray-900: #f8f9fa;
+
+$dark-white-100: #333333;
+$dark-white-200: #666666;
+$dark-white-300: #999999;
+$dark-white-400: #cccccc;
+$dark-white-500: #f7f7f7;
+$dark-white-600: #f3f3f3;
+$dark-white-700: #f2f2f2;
+$dark-white-800: #f1f1f1;
+$dark-white-900: #ffffff;
+
+$dark-warning-100: #332701;
+$dark-warning-200: #664d03;
+$dark-warning-300: #997404;
+$dark-warning-400: #cc9a06;
+$dark-warning-500: #ffc107;
+$dark-warning-600: #ffcd39;
+$dark-warning-700: #ffda6a;
+$dark-warning-800: #ffe69c;
+$dark-warning-900: #fff3cd;
+
+$dark-teal-100: #06281e;
+$dark-teal-200: #0d503c;
+$dark-teal-300: #13795b;
+$dark-teal-400: #1aa179;
+$dark-teal-500: #20c997;
+$dark-teal-600: #4dd4ac;
+$dark-teal-700: #79dfc1;
+$dark-teal-800: #a6e9d5;
+$dark-teal-900: #d2f4ea;
+
+$dark-primary-100: #031633;
+$dark-primary-200: #052c65;
+$dark-primary-300: #084298;
+$dark-primary-400: #0a58ca;
+$dark-primary-500: #0d6efd;
+$dark-primary-600: #3d8bfd;
+$dark-primary-700: #6ea8fe;
+$dark-primary-800: #9ec5fe;
+$dark-primary-900: #cfe2ff;
+
+$dark-pink-100: #2b0a1a;
+$dark-pink-200: #561435;
+$dark-pink-300: #801f4f;
+$dark-pink-400: #ab296a;
+$dark-pink-500: #d63384;
+$dark-pink-600: #de5c9d;
+$dark-pink-700: #e685b5;
+$dark-pink-800: #efadce;
+$dark-pink-900: #f7d6e6;
+
+$dark-orange-100: #331904;
+$dark-orange-200: #653208;
+$dark-orange-300: #984c0c;
+$dark-orange-400: #ca6510;
+$dark-orange-500: #fd7e14;
+$dark-orange-600: #fd9843;
+$dark-orange-700: #feb272;
+$dark-orange-800: #fecba1;
+$dark-orange-900: #ffe5d0;
+
+$dark-indigo-100: #140330;
+$dark-indigo-200: #290661;
+$dark-indigo-300: #3d0a91;
+$dark-indigo-400: #520dc2;
+$dark-indigo-500: #6610f2;
+$dark-indigo-600: #8540f5;
+$dark-indigo-700: #a370f7;
+$dark-indigo-800: #c29ffa;
+$dark-indigo-900: #e0cffc;
+
+$dark-green-100: #051b11;
+$dark-green-200: #0a3622;
+$dark-green-300: #0f5132;
+$dark-green-400: #146c43;
+$dark-green-500: #198754;
+$dark-green-600: #479f76;
+$dark-green-700: #75b798;
+$dark-green-800: #a3cfbb;
+$dark-green-900: #d1e7dd;
+
+$dark-dark-100: #060606;
+$dark-dark-200: #0b0b0b;
+$dark-dark-300: #111111;
+$dark-dark-400: #161616;
+$dark-dark-500: #1c1c1c;
+$dark-dark-600: #494949;
+$dark-dark-700: #777777;
+$dark-dark-800: #a4a4a4;
+$dark-dark-900: #d2d2d2;
+
+$dark-danger-100: #2c0b0e;
+$dark-danger-200: #58151c;
+$dark-danger-300: #842029;
+$dark-danger-400: #b02a37;
+$dark-danger-500: #dc3545;
+$dark-danger-600: #e35d6a;
+$dark-danger-700: #ea868f;
+$dark-danger-800: #f1aeb5;
+$dark-danger-900: #f8d7da;
+
+$dark-cyan-100: #032830;
+$dark-cyan-200: #055160;
+$dark-cyan-300: #087990;
+$dark-cyan-400: #0aa2c0;
+$dark-cyan-500: #0dcaf0;
+$dark-cyan-600: #3dd5f3;
+$dark-cyan-700: #6edff6;
+$dark-cyan-800: #9eeaf9;
+$dark-cyan-900: #cff4fc;
+
+// Units
+$unit: 4px;
+$spaces: 0 1 2 3 4 5 6 7 8 9 10 11 12 14 16 20 24 28 32 36 40 44 48 52 56 60 64
+  72 80 96;
+$gap: 0.5rem;
+$fontSize: (xs 0.75rem, sm 0.875rem, base 1rem, lg 1.125rem, xl 1.25rem);
+
+// transtions
+$delay: 0.3s;
+
+// Brack Points
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+// Flex
+$orders: 0 1 2 3 4 5 6 7 8 9 10;
+$flexProps: (
+  center: (
+    center,
+  ),
+  start: (
+    start,
+  ),
+  end: (
+    end,
+  ),
+  stretch: (
+    stretch,
+  ),
+  around: (
+    space-around,
+  ),
+  between: (
+    space-between,
+  ),
+  evenly: (
+    space-evenly,
+  ),
+);
+
+// Rounded
+$rounded: (
+  none: 0,
+  full: 999999px,
+  md: 6px,
+  sm: 2px,
+  lg: 8px,
+  xl: 12px,
+  2xl: 16px,
+  3xl: 24px,
+);
+
+// Screens
+$screens: (
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px,
+);

@@ -1,0 +1,5 @@
+@import "./sass/main";
+body.dark {
+  background-color: $dark;
+  color: $light;
+}

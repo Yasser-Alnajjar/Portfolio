@@ -1,0 +1,58 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $gap;
+}
+.row > * {
+  width: 100%;
+  max-width: 100%;
+}
+.col {
+  flex: 1 0 0%;
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    width: calc((100% / 12) * $i - $gap);
+  }
+}
+
+@each $screen, $width in $screens {
+  @media screen and (min-width: $width) {
+    @for $i from 1 through 12 {
+      .col-#{$screen}-#{$i} {
+        width: calc((100% / 12) * $i - $gap);
+      }
+      .w-#{$screen}-#{$i} {
+        width: calc(100% / 12 * $i - $gap);
+      }
+      .w-#{$i} {
+        width: calc(100% / 12 * $i - $gap);
+      }
+    }
+    .d-#{$screen}-none {
+      display: none !important;
+    }
+    .d-#{$screen}-block {
+      display: block !important;
+    }
+    .d-#{$screen}-flex {
+      display: flex !important;
+    }
+    .d-#{$screen}-grid {
+      display: grid !important;
+    }
+    @each $order in $orders {
+      .order-#{$screen}-#{$order} {
+        order: $order;
+      }
+    }
+    .w-#{$screen}-full {
+      width: 100%;
+    }
+    .w-#{$screen}-fit {
+      width: fit-content;
+    }
+  }
+}

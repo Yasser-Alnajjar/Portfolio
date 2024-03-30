@@ -1,0 +1,38 @@
+.control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $gray-900;
+  appearance: none;
+  background-color: $light;
+  background-clip: padding-box;
+  border: 1.4px solid $gray-400;
+  border-radius: 6px;
+  transition: 0.2s linear;
+  &:focus {
+    color: $gray-900;
+    border-color: $gray-900;
+    outline: 0;
+  }
+
+  // Placeholder
+  &::placeholder {
+    color: $gray-600;
+    opacity: 1;
+  }
+
+  // Disabled inputs
+  &:disabled {
+    color: $gray-400;
+    background-color: $gray-500;
+    border-color: $gray-300;
+    opacity: 1;
+  }
+}
+body.dark {
+  .control {
+    background-color: $dark;
+  }
+}
