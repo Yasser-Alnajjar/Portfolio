@@ -1,10 +1,11 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import About from '../../components/sections/About';
+import Hero from '../../components/sections/Hero';
 
 export default function Home() {
   return (
-    <>
-      <h2>home</h2>
-    </>
+    <main>
+      <Hero />
+      <About />
+    </main>
   );
 }

@@ -1,12 +1,14 @@
 import mergeClass from '../../../utils';
-import { buttonVariants } from '../../../constants';
+import { outlineButtonVariants } from '../../../constants';
 
-export default function Button({
+export default function OutlineButton({
   children,
   variant,
   fullWidth,
   size,
   align,
+  as,
+  border,
   rounded,
   className = '',
   ...rest
@@ -14,11 +16,12 @@ export default function Button({
   return (
     <button
       className={`${mergeClass(
-        buttonVariants({
+        outlineButtonVariants({
           variant,
           size,
           fullWidth,
           align,
+          border,
           rounded,
         }),
       )} ${className}`}

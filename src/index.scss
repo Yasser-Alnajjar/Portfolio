@@ -1,4 +1,7 @@
-@import "./sass/main";
+@import './sass/main';
+body {
+  transition: background-color 0.2s ease-in-out;
+}
 body.dark {
   background-color: $dark;
   color: $light;

@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import { Button, Navbar } from '../../components';
+import { Navbar } from '../../components';
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <Button>Test</Button>
-      <Outlet />
+      <section className="container">
+        <Outlet />
+      </section>
     </>
   );
 }

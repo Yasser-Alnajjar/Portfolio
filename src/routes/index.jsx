@@ -1,13 +1,11 @@
 import Home from '../Layouts/Home';
-import HomePage from '../pages/Home';
+import Homepage from '../pages/Home';
+
 const routes = [
   {
     path: '',
     element: <Home />,
-    children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/about', element: <h2>about</h2> },
-    ],
+    children: [{ path: '/', element: <Homepage /> }],
   },
 ];
 

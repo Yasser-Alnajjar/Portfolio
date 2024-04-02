@@ -1,9 +1,0 @@
-@mixin align($direction) {
-  text-align: $direction;
-}
-@mixin flex($align: start, $justify: start, $dir: row) {
-  display: flex;
-  align-items: $align;
-  justify-content: $justify;
-  flex-direction: $dir;
-}

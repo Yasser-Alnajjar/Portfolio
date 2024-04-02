@@ -75,7 +75,7 @@
     gap: $unit * $space;
   }
   .border-#{$space} {
-    border-width: #{$space}px;
+    border-width: #{$space}px !important;
   }
   .fs-#{$space} {
     font-size: $unit * $space;
