@@ -1,4 +1,4 @@
-import { LuGithub, LuFacebook, LuLinkedin } from 'react-icons/lu';
+import { LuGithub, LuFacebook, LuLinkedin, LuInstagram } from 'react-icons/lu';
 import { cva } from 'class-variance-authority';
 import variantData from '../data';
 
@@ -99,6 +99,11 @@ const socialLinks = [
     id: 3,
     href: 'https://www.facebook.com/yasseralnajjar23',
     icon: <LuFacebook size={20} />,
+  },
+  {
+    id: 4,
+    href: 'https://www.instagram.com/y.a.s.s.e.r.a.l.n.a.j.j.a.r',
+    icon: <LuInstagram size={20} />,
   },
 ];
 export { buttonVariants, outlineButtonVariants, socialLinks };

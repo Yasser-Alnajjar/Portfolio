@@ -1,5 +1,4 @@
 .navbar {
-  background-color: opacity($light);
   backdrop-filter: blur(4px);
   padding: 1rem 0;
   position: sticky;
@@ -55,11 +54,5 @@
     .toggle-menu {
       display: block;
     }
-  }
-}
-
-body.dark {
-  .navbar {
-    background-color: opacity($dark);
   }
 }

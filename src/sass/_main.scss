@@ -8,17 +8,20 @@
 @import './components/ui/modal';
 @import './components/ui/input';
 @import './components/ui/card';
+
 // shared
 @import './components/shared/social';
 @import './components/shared/navbar';
 @import './components/shared/sidemenu';
 @import './components/shared/loader';
-@import './components/shared/hero';
 
+// Sections
+@import './components/sections/hero';
+
+// Helpers
 @import './base/helpers';
 @import './base/classes';
 @import './base/grid-system';
 @import './components/variants';
-
 @import './base/base';
 @import './base/containers';
