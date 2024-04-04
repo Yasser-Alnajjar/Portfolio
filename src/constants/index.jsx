@@ -1,3 +1,4 @@
+import { LuGithub, LuFacebook, LuLinkedin } from 'react-icons/lu';
 import { cva } from 'class-variance-authority';
 import variantData from '../data';
 
@@ -83,4 +84,21 @@ const outlineButtonVariants = cva('btn-outline', {
     align: 'center',
   },
 });
-export { buttonVariants, outlineButtonVariants };
+const socialLinks = [
+  {
+    id: 1,
+    href: 'https://github.com/Yasser-Alnajjar',
+    icon: <LuGithub size={20} />,
+  },
+  {
+    id: 2,
+    href: 'https://www.linkedin.com/in/yasser-alnajjar-643a77225',
+    icon: <LuLinkedin size={20} />,
+  },
+  {
+    id: 3,
+    href: 'https://www.facebook.com/yasseralnajjar23',
+    icon: <LuFacebook size={20} />,
+  },
+];
+export { buttonVariants, outlineButtonVariants, socialLinks };

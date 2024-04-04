@@ -45,6 +45,17 @@
       }
     }
   }
+  .toggle-menu {
+    display: none;
+  }
+  @media screen and (max-width: 767px) {
+    &-list {
+      display: none;
+    }
+    .toggle-menu {
+      display: block;
+    }
+  }
 }
 
 body.dark {

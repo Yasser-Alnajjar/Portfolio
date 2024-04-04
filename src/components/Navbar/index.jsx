@@ -1,8 +1,13 @@
+import { useDispatch } from 'react-redux';
+import { LuMenu } from 'react-icons/lu';
 import { NavLink } from 'react-router-dom';
 import ToggleMode from '../ToggleMode';
 import { outlineButtonVariants } from '../../constants';
+import OutlineButton from '../ui/OutlineButton';
+import { toggleMenu } from '../../redux/slices/theme.slice';
 
 export default function Navbar() {
+  const dispatch = useDispatch();
   return (
     <nav className="navbar">
       <div className="container">
@@ -17,6 +22,15 @@ export default function Navbar() {
             Yasser
           </NavLink>
         </div>
+        <OutlineButton
+          className="toggle-menu"
+          variant="danger"
+          onClick={() => {
+            dispatch(toggleMenu());
+          }}
+        >
+          <LuMenu />
+        </OutlineButton>
         <ul className="navbar-list">
           <li className="navbar-list-item">
             <NavLink to="/">Home</NavLink>
