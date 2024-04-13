@@ -1,6 +1,4 @@
 import { LuGithub, LuFacebook, LuLinkedin, LuInstagram } from 'react-icons/lu';
-import { IoLogoHtml5, IoLogoCss3, IoLogoJavascript } from 'react-icons/io5';
-import { SiTypescript } from 'react-icons/si';
 import { cva } from 'class-variance-authority';
 import variantData from '../data';
 import bondi from '../assets/projects/bondi.png';

@@ -60,7 +60,7 @@ export default function Navbar() {
           <li className="navbar-list-item">
             <a
               className={outlineButtonVariants({
-                variant: 'danger',
+                variant: 'danger-500',
                 border: false,
               })}
               href={cv}
