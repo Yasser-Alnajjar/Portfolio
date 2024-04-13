@@ -1,8 +1,31 @@
 @import './sass/main';
 body {
   transition: background-color 0.2s ease-in-out;
+  cursor: url('./assets/cursor.png'), auto;
+  ::selection {
+    background-color: $dark;
+    color: $light;
+  }
 }
+
 body.dark {
   background-color: $dark;
   color: $light;
+  ::selection {
+    background-color: $light;
+    color: $dark;
+  }
+  .privacy-screen {
+    background-color: $dark;
+  }
+}
+.privacy-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $gray-200;
+  z-index: 6;
+  border: 1px solid $gray-400;
 }

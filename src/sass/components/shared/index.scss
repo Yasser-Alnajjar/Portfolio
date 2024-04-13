@@ -1,0 +1,33 @@
+.title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  & .line {
+    background-color: $dark;
+    height: 2px;
+    flex: 1 0 0%;
+    display: block;
+  }
+
+  .link {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}
+body.dark {
+  .title {
+    & .line {
+      background-color: $light;
+    }
+  }
+}
+
+.opacity {
+  background-color: transparent !important;
+}

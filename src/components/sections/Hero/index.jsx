@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
-    <section className="hero">
-      <span className="text-danger-500 fs-5">Hi, my name is</span>
+    <section className="hero" id="home">
+      <span className="text-danger-500 fs-5 pointer">Hi, my name is</span>
       <div className="name">
         <h2 className="h-lg">Yasser Al-Najjar.</h2>
         <h3 className="h-lg">I build things for the web.</h3>

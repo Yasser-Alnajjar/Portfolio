@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { LuMenu } from 'react-icons/lu';
 import { NavLink } from 'react-router-dom';
@@ -8,8 +9,19 @@ import { toggleMenu } from '../../redux/slices/theme.slice';
 
 export default function Navbar() {
   const dispatch = useDispatch();
+  const [isMoved, setIsMoved] = useState(false);
+  useEffect(() => {
+    document.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        setIsMoved(true);
+      } else {
+        setIsMoved(false);
+      }
+    });
+  }, [isMoved]);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isMoved ? 'shadow' : ''}`}>
       <div className="container">
         <div className="navbar-logo">
           <NavLink
@@ -37,6 +49,9 @@ export default function Navbar() {
           </li>
           <li className="navbar-list-item">
             <NavLink to="/about">About</NavLink>
+          </li>
+          <li className="navbar-list-item">
+            <NavLink to="/projects">Projects</NavLink>
           </li>
           <li className="navbar-list-item">
             <NavLink to="/contact">Contact Me</NavLink>

@@ -1,4 +1,5 @@
 @import './base/variables';
+@import './base/grid-system';
 
 // mixins
 @import './mixins/mixins';
@@ -14,14 +15,17 @@
 @import './components/shared/navbar';
 @import './components/shared/sidemenu';
 @import './components/shared/loader';
+@import './components/shared/index';
 
 // Sections
 @import './components/sections/hero';
+@import './components/sections/projects';
+@import './components/sections/about';
+@import './components/sections/skills';
 
 // Helpers
 @import './base/helpers';
 @import './base/classes';
-@import './base/grid-system';
 @import './components/variants';
 @import './base/base';
 @import './base/containers';

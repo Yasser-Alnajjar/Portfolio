@@ -3,6 +3,11 @@
   padding: 1rem 0;
   position: sticky;
   top: 0;
+  z-index: 5;
+  transition: $delay ease-in-out;
+  &.shadow {
+    box-shadow: 0 10px 30px -10px rgba(179, 180, 181, 0.7);
+  }
   .container {
     @include flex(space-between, center);
   }
@@ -53,6 +58,13 @@
     }
     .toggle-menu {
       display: block;
+    }
+  }
+}
+body.dark {
+  .navbar {
+    &.shadow {
+      box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
     }
   }
 }

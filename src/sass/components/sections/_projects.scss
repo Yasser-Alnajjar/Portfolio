@@ -1,0 +1,12 @@
+.projects {
+  padding: 100px 0;
+  .row {
+    align-items: stretch;
+  }
+  &-link {
+    transition: $delay ease-in-out;
+    &:hover {
+      color: $danger;
+    }
+  }
+}

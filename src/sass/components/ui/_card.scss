@@ -1,4 +1,14 @@
 .card {
-  border: 1px solid $gray-100;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border: 1px solid transparent;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: $delay ease-in-out;
+  height: 100%;
+  &:hover {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  }
+  &-body {
+    padding: 0.5rem;
+  }
 }

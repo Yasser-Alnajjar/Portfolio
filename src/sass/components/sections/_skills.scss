@@ -1,0 +1,16 @@
+.skills {
+  .card {
+    &-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-img {
+      display: flex;
+      justify-content: center;
+      img {
+        width: 40px;
+      }
+    }
+  }
+}
