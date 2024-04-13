@@ -6,6 +6,7 @@ import ToggleMode from '../ToggleMode';
 import { outlineButtonVariants } from '../../constants';
 import OutlineButton from '../ui/OutlineButton';
 import { toggleMenu } from '../../redux/slices/theme.slice';
+import cv from '../../assets/Yasser_Al-Najjar_Resume.pdf';
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -55,6 +56,17 @@ export default function Navbar() {
           </li>
           <li className="navbar-list-item">
             <NavLink to="/contact">Contact Me</NavLink>
+          </li>
+          <li className="navbar-list-item">
+            <a
+              className={outlineButtonVariants({
+                variant: 'danger',
+                border: false,
+              })}
+              href={cv}
+            >
+              Resume
+            </a>
           </li>
           <li>
             <div className="navbar-toggle">
