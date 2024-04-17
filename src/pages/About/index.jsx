@@ -1,8 +1,10 @@
 import yasser from '../../assets/yasser.jpg';
+import Title from '../../components/Title';
 
 export default function About() {
   return (
     <section className="about">
+      <Title line>About Me</Title>
       <div className="about-box">
         <div className="about-summary">
           <p className="text">
