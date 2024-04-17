@@ -1,8 +1,8 @@
+import { Toaster } from 'react-hot-toast';
 import { useLocation, useRoutes } from 'react-router-dom';
 import { cloneElement } from 'react';
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 import routes from './routes/index';
-import { Toaster } from 'react-hot-toast';
 
 function App() {
   const router = useRoutes(routes);
