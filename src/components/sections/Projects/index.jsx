@@ -3,6 +3,7 @@ import { Tilt } from 'react-tilt';
 import { LuExternalLink, LuGithub } from 'react-icons/lu';
 import { projects } from '../../../constants';
 import Title from '../../Title';
+import { Link } from 'react-router-dom';
 
 export default function Projects() {
   return (
@@ -45,24 +46,23 @@ export default function Projects() {
                       <LuFolder size={22} />
                     </Link> */}
                     {project?.link?.live && (
-                      <a
+                      <Link
                         className="projects-link"
-                        href={project.link.live}
+                        to={project.link.live}
                         target="_blank"
-                        rel="noreferrer"
                       >
                         <LuExternalLink size={22} />
-                      </a>
+                      </Link>
                     )}
                     {project?.link?.github && (
-                      <a
+                      <Link
                         className="projects-link"
-                        href={project.link.github}
+                        to={project.link.github}
                         target="_blank"
-                        rel="noreferrer"
+                        replace
                       >
                         <LuGithub size={22} />
-                      </a>
+                      </Link>
                     )}
                   </div>
                 </div>

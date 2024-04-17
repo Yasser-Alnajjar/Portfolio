@@ -161,7 +161,7 @@ const projects = [
     image: union,
     title: 'The Union School',
     link: {
-      live: 'the-union-school.vercel.app',
+      live: 'https://the-union-school.vercel.app',
       github: 'https://github.com/Yasser-Alnajjar/The-Union-School',
     },
     direction: '100',
