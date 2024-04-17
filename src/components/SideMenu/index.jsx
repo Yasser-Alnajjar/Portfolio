@@ -9,7 +9,9 @@ import OutlineButton from '../ui/OutlineButton';
 export default function SideMenu() {
   const theme = useSelector(themeSelector);
   const dispatch = useDispatch();
-
+  const handleMenu = () => {
+    dispatch(toggleMenu());
+  };
   return (
     <aside
       className={`sidemenu  bg-white text-dark ${theme.openMenu ? 'open' : ''}`}
@@ -18,22 +20,26 @@ export default function SideMenu() {
         <OutlineButton
           className="toggle-menu"
           variant="danger"
-          onClick={() => {
-            dispatch(toggleMenu());
-          }}
+          onClick={handleMenu}
         >
           <LuPanelRightClose />
         </OutlineButton>
       </div>
       <ul className="sidemenu-list">
         <li className="sidemenu-list-item">
-          <NavLink to="/">Home</NavLink>
+          <NavLink onClick={handleMenu} to="/">
+            Home
+          </NavLink>
         </li>
         <li className="sidemenu-list-item">
-          <NavLink to="/about">About</NavLink>
+          <NavLink onClick={handleMenu} to="/about">
+            About
+          </NavLink>
         </li>
         <li className="sidemenu-list-item">
-          <NavLink to="/contact">Contact Me</NavLink>
+          <NavLink onClick={handleMenu} to="/contact">
+            Contact Me
+          </NavLink>
         </li>
         <li>
           <div className="sidemenu-toggle">

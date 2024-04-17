@@ -27,10 +27,11 @@ export default function Navbar() {
         <div className="navbar-logo">
           <NavLink
             to="/"
-            className={outlineButtonVariants({
+            className={`${outlineButtonVariants({
               variant: 'danger-500',
+              size: 'lg',
               border: false,
-            })}
+            })} text-bold`}
           >
             Yasser
           </NavLink>
