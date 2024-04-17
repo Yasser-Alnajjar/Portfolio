@@ -11,7 +11,9 @@ export default function SideMenu() {
   const dispatch = useDispatch();
 
   return (
-    <aside className={`sidemenu ${theme.openMenu ? 'open' : ''}`}>
+    <aside
+      className={`sidemenu  bg-white text-dark ${theme.openMenu ? 'open' : ''}`}
+    >
       <div className="close">
         <OutlineButton
           className="toggle-menu"

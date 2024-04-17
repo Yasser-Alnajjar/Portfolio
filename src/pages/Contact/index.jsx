@@ -61,8 +61,8 @@ export default function Contact() {
         Get in touch
       </Title>
       <div className="get-in-touch flex flex-column gap-2 mb-10">
-        <p className="w-50">Fill in the form to start a conversation</p>
-        <p className="w-50">
+        <p className="w-lg-50">Fill in the form to start a conversation</p>
+        <p className="w-lg-50">
           You can contact me with any questions, suggestions or just to say hi.
           I am always open to new ideas and collaborations. It can be anything
           like collaborating on good projects or startups or anime or gaming or

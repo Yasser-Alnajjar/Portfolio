@@ -50,6 +50,9 @@
     .w-#{$screen}-full {
       width: 100%;
     }
+    .w-#{$screen}-50 {
+      width: 50%;
+    }
     .w-#{$screen}-fit {
       width: fit-content;
     }
