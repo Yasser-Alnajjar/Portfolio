@@ -20,10 +20,22 @@ import digitalClock from '../assets/projects/digital-clock.png';
 import quizApp from '../assets/projects/quiz-app.png';
 
 import html from '../assets/language-logos/html.svg';
-import css from '../assets/language-logos/css.svg';
+import css from '../assets/language-logos/css.png';
 import javascript from '../assets/language-logos/javascript.svg';
 import typescript from '../assets/language-logos/typescript.svg';
-import cpp from '../assets/language-logos/cpp.svg';
+import sass from '../assets/language-logos/sass.svg';
+import git from '../assets/language-logos/git.png';
+import github from '../assets/language-logos/github.svg';
+import bootstrap from '../assets/language-logos/bootstrap.svg';
+import vite from '../assets/language-logos/vite.svg';
+import react from '../assets/language-logos/react.png';
+import next from '../assets/language-logos/next.svg';
+import vue from '../assets/language-logos/vue.ico';
+import vercel from '../assets/language-logos/vercel.svg';
+import npm from '../assets/language-logos/npm.png';
+import tailwind from '../assets/language-logos/tailwind.png';
+import mui from '../assets/language-logos/mui.png';
+import webpack from '../assets/language-logos/webpack.png';
 
 const buttonVariants = cva('btn', {
   variants: {
@@ -300,26 +312,104 @@ const skills = [
     id: 1,
     skill: 'HTML',
     icon: <img className="img-fluid" src={html} alt="html" />,
+    direction: '100',
   },
   {
     id: 2,
     skill: 'Css',
     icon: <img className="img-fluid" src={css} alt="css" />,
+    direction: '-100',
   },
   {
     id: 3,
     skill: 'Javascript',
     icon: <img className="img-fluid" src={javascript} alt="javascript" />,
+    direction: '100',
   },
   {
     id: 4,
     skill: 'Typescript',
     icon: <img className="img-fluid" src={typescript} alt="typescript" />,
+    direction: '-100',
   },
   {
     id: 5,
-    skill: 'Cpp',
-    icon: <img className="img-fluid" src={cpp} alt="cpp" />,
+    skill: 'React.js',
+    icon: <img className="img-fluid" src={react} alt="react" />,
+    direction: '100',
+  },
+  {
+    id: 6,
+    skill: 'Next.js',
+    icon: <img className="img-fluid" src={next} alt="next" />,
+    direction: '-100',
+  },
+  {
+    id: 7,
+    skill: 'Vue.js (Fundamentals)',
+    icon: <img className="img-fluid" src={vue} alt="vue" />,
+    direction: '100',
+  },
+  {
+    id: 8,
+    skill: 'Bootstrap',
+    icon: <img className="img-fluid" src={bootstrap} alt="bootstrap" />,
+    direction: '-100',
+  },
+  {
+    id: 9,
+    skill: 'Sass',
+    icon: <img className="img-fluid" src={sass} alt="sass" />,
+    direction: '100',
+  },
+  {
+    id: 10,
+    skill: 'Tailwind Css',
+    icon: <img className="img-fluid" src={tailwind} alt="tailwind" />,
+    direction: '-100',
+  },
+  {
+    id: 11,
+    skill: 'MUI',
+    icon: <img className="img-fluid" src={mui} alt="mui" />,
+    direction: '100',
+  },
+  {
+    id: 12,
+    skill: 'NPM',
+    icon: <img className="img-fluid" src={npm} alt="npm" />,
+    direction: '-100',
+  },
+  {
+    id: 13,
+    skill: 'Vite',
+    icon: <img className="img-fluid" src={vite} alt="vite" />,
+    direction: '100',
+  },
+  {
+    id: 14,
+    skill: 'Webpack',
+    icon: <img className="img-fluid" src={webpack} alt="webpack" />,
+    direction: '-100',
+  },
+  {
+    id: 15,
+    skill: 'Git',
+    icon: <img className="img-fluid" src={git} alt="git" />,
+    direction: '100',
+  },
+  {
+    id: 16,
+    skill: 'Github',
+    icon: <img className="img-fluid" src={github} alt="github" />,
+    direction: '-100',
+  },
+  {
+    id: 17,
+    skill: 'vercel',
+    icon: <img className="img-fluid" src={vercel} alt="vercel" />,
+    direction: '100',
   },
 ];
+
 export { buttonVariants, outlineButtonVariants, socialLinks, projects, skills };

@@ -4,7 +4,7 @@ import Title from '../../Title';
 
 export default function Skills() {
   return (
-    <section className="skills">
+    <section className="skills my-10">
       <Title>Skills</Title>
       <div className="row overflow-hidden">
         {skills.map((skill) => (
@@ -12,7 +12,7 @@ export default function Skills() {
             <motion.div
               className="card border-gray-100"
               initial={{
-                translateX: `-100%`,
+                translateX: `${skill.direction}%`,
                 zIndex: -2,
                 visibility: 'hidden',
               }}

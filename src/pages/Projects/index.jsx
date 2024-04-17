@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <section className="projects">
       <Title line>Projects</Title>
-      <div className="row">
+      <div className="row justify-start">
         {projects.map((project) => (
           <Tilt
             className="col-12 col-sm-6 col-lg-4 overflow-hidden"

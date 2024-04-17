@@ -10,7 +10,7 @@ export default function Projects() {
       <Title link="projects" name="View All">
         Projects
       </Title>
-      <div className="row">
+      <div className="row justify-start">
         {projects.slice(0, 6).map((project) => (
           <Tilt
             className="col-12 col-sm-6 col-lg-4 overflow-hidden"
