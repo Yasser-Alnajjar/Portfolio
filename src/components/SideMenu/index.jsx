@@ -1,10 +1,14 @@
-import { LuPanelRightClose } from 'react-icons/lu';
+import { IoDocumentTextOutline } from 'react-icons/io5';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
+import { MdOutlineAttachEmail } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { socialLinks } from '../../constants';
 import { themeSelector, toggleMenu } from '../../redux/slices/theme.slice';
 import ToggleMode from '../ToggleMode';
-import OutlineButton from '../ui/OutlineButton';
+import Button from '../ui/Button';
+import cv from '../../assets/Yasser_Al-Najjar_Resume.pdf';
 
 export default function SideMenu() {
   const theme = useSelector(themeSelector);
@@ -13,17 +17,16 @@ export default function SideMenu() {
     dispatch(toggleMenu());
   };
   return (
-    <aside
-      className={`sidemenu  bg-white text-dark ${theme.openMenu ? 'open' : ''}`}
-    >
+    <aside className={`sidemenu  ${theme.openMenu ? 'open' : ''}`}>
       <div className="close">
-        <OutlineButton
-          className="toggle-menu"
-          variant="danger"
+        <Button
+          className="toggle-menu mr-4 text-danger"
+          variant="transparent"
+          border={false}
           onClick={handleMenu}
         >
-          <LuPanelRightClose />
-        </OutlineButton>
+          <IoIosCloseCircleOutline size={25} />
+        </Button>
       </div>
       <ul className="sidemenu-list">
         <li className="sidemenu-list-item">
@@ -45,6 +48,35 @@ export default function SideMenu() {
           <div className="sidemenu-toggle">
             <ToggleMode />
           </div>
+        </li>
+      </ul>
+      <ul className="flex flex-wrap flex-row gap-5 justify-center mt-5">
+        {socialLinks.map((link) => (
+          <li className="sidemenu-list-item" key={link.id}>
+            <a
+              className="tooltip"
+              data-name={link.name}
+              target="_blank"
+              rel="noreferrer"
+              href={link.href}
+            >
+              {link.icon}
+            </a>
+          </li>
+        ))}
+        <li className="sidemenu-list-item">
+          <a
+            className="tooltip"
+            data-name="Email"
+            href="mailto:yasseralnajjar72@gmail.com"
+          >
+            <MdOutlineAttachEmail size={22} />
+          </a>
+        </li>
+        <li className="sidemenu-list-item">
+          <a className="tooltip" href={cv} data-name="Resume">
+            <IoDocumentTextOutline size={22} />
+          </a>
         </li>
       </ul>
     </aside>

@@ -28,8 +28,8 @@ export default function Contact() {
     if (form.email !== '' && form.name !== '' && form.message !== '') {
       emailjs
         .send(
-          'service_khl60op',
-          'template_4nii773',
+          import.meta.env.VITE_SERVICE_KEY,
+          import.meta.env.VITE_TEMPLATE_KEY,
           {
             from_name: form.name,
             from_email: form.email,
@@ -37,7 +37,7 @@ export default function Contact() {
             to_email: 'yasseralnajjar72@gmail.com',
             message: form.message,
           },
-          '4c66AwWjGcUbBmV_T',
+          import.meta.env.VITE_PUBLIC_KEY,
         )
         .then(() => {
           setLoading(false);

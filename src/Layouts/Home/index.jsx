@@ -13,6 +13,7 @@ export default function Home() {
           {socialLinks.map((link) => (
             <li className="aside-list-item" key={link.id}>
               <a
+                data-name={link.name}
                 className="aside-list-link"
                 target="_blank"
                 rel="noreferrer"

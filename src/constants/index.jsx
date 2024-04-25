@@ -123,21 +123,25 @@ const socialLinks = [
   {
     id: 1,
     href: 'https://github.com/Yasser-Alnajjar',
+    name: 'Github',
     icon: <LuGithub size={20} />,
   },
   {
     id: 2,
     href: 'https://www.linkedin.com/in/yasser-alnajjar-643a77225',
+    name: 'Linkedin',
     icon: <LuLinkedin size={20} />,
   },
   {
     id: 3,
     href: 'https://www.facebook.com/yasseralnajjar23',
+    name: 'Facebook',
     icon: <LuFacebook size={20} />,
   },
   {
     id: 4,
     href: 'https://www.instagram.com/y.a.s.s.e.r.a.l.n.a.j.j.a.r',
+    name: 'Instagram',
     icon: <LuInstagram size={20} />,
   },
 ];

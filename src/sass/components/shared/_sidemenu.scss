@@ -11,6 +11,7 @@
   border-bottom: 1px solid $danger-500;
   transform: translateY(-100%);
   transition: $delay ease-in-out;
+  background-color: $light;
   &.open {
     transform: translateY(0);
   }
@@ -32,10 +33,33 @@
           scale: 1;
         }
       }
-      & a {
+      a.tooltip {
         position: relative;
-        transition: 0.2s ease-in-out;
-        display: block;
+        padding: 0.3rem 0.5rem;
+        transition: $delay ease-in-out;
+        &:hover::after {
+          opacity: 1;
+          visibility: visible;
+          transform: translate(-50%, -40px);
+        }
+        &::after {
+          content: attr(data-name);
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, 0);
+          width: fit-content;
+          height: fit-content;
+          color: $danger;
+          transition: $delay ease-in-out;
+          opacity: 0;
+          visibility: hidden;
+          border: 1px solid $danger;
+          padding: 0.3rem 0.5rem;
+          border-radius: 6px;
+          z-index: 20;
+          background-color: $white-100;
+        }
       }
       & a.active {
         color: $danger;
@@ -47,5 +71,17 @@
 body.dark {
   .navbar {
     background-color: opacity($dark);
+  }
+  .sidemenu {
+    background-color: $dark;
+    &-list {
+      &-item {
+        a {
+          &::after {
+            background-color: $dark;
+          }
+        }
+      }
+    }
   }
 }
