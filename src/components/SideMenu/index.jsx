@@ -8,7 +8,7 @@ import { socialLinks } from '../../constants';
 import { themeSelector, toggleMenu } from '../../redux/slices/theme.slice';
 import ToggleMode from '../ToggleMode';
 import Button from '../ui/Button';
-import cv from '../../assets/Yasser_Al-Najjar_Resume.pdf';
+import cv from '../../assets/Front_End_Yasser_Al_Najjar.pdf';
 
 export default function SideMenu() {
   const theme = useSelector(themeSelector);

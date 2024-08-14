@@ -326,6 +326,10 @@ $dark-variants: (
       border-color: darken($background, 20);
     }
   }
+  .badge-#{$variant} {
+    background-color: $background;
+    color: $color;
+  }
 }
 
 @each $variant, $args in $dark-variants {
@@ -390,5 +394,9 @@ $dark-variants: (
         border-color: darken($background, 20);
       }
     }
+  }
+  .badge.#{$variant} {
+    background-color: $background;
+    color: $color;
   }
 }

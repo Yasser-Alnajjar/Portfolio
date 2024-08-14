@@ -1,0 +1,23 @@
+.badge {
+  background-color: transparent;
+  color: transparent;
+  font-size: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  display: block;
+  &.rounded {
+    border-radius: 0.5rem;
+  }
+  &.circle {
+    border-radius: 50%;
+    padding: 0;
+    min-width: 20px;
+    min-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.pill {
+    border-radius: 10rem;
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "experience": [
+    {
+      "id": 1,
+      "company": {
+        "name": "TOT Platform",
+        "location": "Giza – Abd El-Moneim Riad.",
+        "job_title": "Front-end developer",
+        "start_date": "04/2024",
+        "end_date": "",
+        "present": true
+      },
+      "projects": [
+        {
+          "id": 1,
+          "production": [
+            "https://himashstyle.com"
+          ],
+          "developed": [
+            "https://mobile.totplatform.net",
+            "https://realestate.totplatform.net",
+            "https://alshafk.totplatform.net",
+            "http://palme.totplatform.net",
+            "https://menspa.totplatform.net/en",
+            "https://bakery.totplatform.net/en"
+          ],
+          "enhanced": [
+            "https://decor.totplatform.net",
+            "https://furniture.totplatform.net/en",
+            "https://restaurant.totplatform.net"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -15,6 +15,7 @@
 @import './components/shared/navbar';
 @import './components/shared/sidemenu';
 @import './components/shared/loader';
+@import './components/shared/badge';
 @import './components/shared/index';
 
 // Sections
@@ -22,6 +23,7 @@
 @import './components/sections/projects';
 @import './components/sections/about';
 @import './components/sections/skills';
+@import './components/sections/experience';
 
 // Helpers
 @import './base/helpers';

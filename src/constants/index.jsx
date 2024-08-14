@@ -415,5 +415,27 @@ const skills = [
     direction: '100',
   },
 ];
-
-export { buttonVariants, outlineButtonVariants, socialLinks, projects, skills };
+const BadgeVariants = cva('badge', {
+  variants: {
+    variant: {
+      ...variantData,
+    },
+    rounded: {
+      true: 'rounded',
+      pill: 'pill',
+      circle: 'circle',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    rounded: 'pill',
+  },
+});
+export {
+  BadgeVariants,
+  buttonVariants,
+  outlineButtonVariants,
+  socialLinks,
+  projects,
+  skills,
+};

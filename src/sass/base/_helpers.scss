@@ -32,11 +32,11 @@
     padding-top: $unit * $space;
     padding-bottom: $unit * $space;
   }
-  .pl-#{$space} {
-    padding-left: $unit * $space;
+  .ps-#{$space} {
+    padding-inline-start: $unit * $space;
   }
-  .pr-#{$space} {
-    padding-right: $unit * $space;
+  .pe-#{$space} {
+    padding-inline-end: $unit * $space;
   }
   .pt-#{$space} {
     padding-top: $unit * $space;
@@ -62,11 +62,11 @@
     margin-top: $unit * $space;
     margin-bottom: $unit * $space;
   }
-  .ml-#{$space} {
-    margin-left: $unit * $space;
+  .ms-#{$space} {
+    margin-inline-start: $unit * $space;
   }
-  .mr-#{$space} {
-    margin-right: $unit * $space;
+  .me-#{$space} {
+    margin-inline-end: $unit * $space;
   }
   .mt-#{$space} {
     margin-top: $unit * $space;
