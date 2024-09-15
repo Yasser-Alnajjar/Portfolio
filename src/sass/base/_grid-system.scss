@@ -30,6 +30,11 @@
         width: calc(100% / 12 * $i - $gap);
       }
     }
+    @each $order in $orders {
+      .order-#{$screen}-#{$order} {
+        order: $order;
+      }
+    }
     .d-#{$screen}-none {
       display: none !important;
     }
@@ -42,11 +47,6 @@
     .d-#{$screen}-grid {
       display: grid !important;
     }
-    @each $order in $orders {
-      .order-#{$screen}-#{$order} {
-        order: $order;
-      }
-    }
     .w-#{$screen}-full {
       width: 100%;
     }
@@ -55,6 +55,24 @@
     }
     .w-#{$screen}-fit {
       width: fit-content;
+    }
+    .#{$screen}-inline {
+      display: inline;
+    }
+    .#{$screen}-block {
+      display: block;
+    }
+    .#{$screen}-flex {
+      display: flex;
+    }
+    .text-#{$screen}-center {
+      text-align: center;
+    }
+    .text-#{$screen}-start {
+      text-align: start;
+    }
+    .text-#{$screen}-end {
+      text-align: end;
     }
   }
 }

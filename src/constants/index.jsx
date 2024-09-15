@@ -425,6 +425,13 @@ const BadgeVariants = cva('badge', {
       pill: 'pill',
       circle: 'circle',
     },
+    size: {
+      xs: 'text-xs px-1 py-0',
+      sm: 'text-sm px-2 py-2',
+      base: 'text-base px-1 py-1',
+      lg: 'text-lg px-1 py-1',
+      xl: 'text-xl px-1 py-1',
+    },
   },
   defaultVariants: {
     variant: 'primary',

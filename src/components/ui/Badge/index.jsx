@@ -5,6 +5,7 @@ export default function Badge({
   children,
   variant,
   rounded,
+  size,
   className = '',
   ...rest
 }) {
@@ -14,6 +15,7 @@ export default function Badge({
         BadgeVariants({
           variant,
           rounded,
+          size,
         }),
       )} ${className}`}
       {...rest}

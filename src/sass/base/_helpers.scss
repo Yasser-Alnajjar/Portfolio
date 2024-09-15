@@ -8,6 +8,16 @@
   .align-#{$propName} {
     align-items: $prop;
   }
+  @each $screen, $width in $screens {
+    @media screen and (min-width: $width) {
+      .justify-#{$screen}-#{$propName} {
+        justify-content: $prop;
+      }
+      .align-#{$screen}-#{$propName} {
+        align-items: $prop;
+      }
+    }
+  }
 }
 
 @each $order in $orders {

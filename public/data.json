@@ -5,8 +5,9 @@
       "company": {
         "name": "TOT Platform",
         "location": "Giza – Abd El-Moneim Riad.",
+        "job_type": "Full Time",
         "job_title": "Front-end developer",
-        "start_date": "04/2024",
+        "start_date": "07/2023",
         "end_date": "",
         "present": true
       },
@@ -31,6 +32,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": 2,
+      "company": {
+        "name": "Active 4 Web",
+        "job_type": "Full Time",
+        "location": "Nasr City – Makram Ebeid",
+        "job_title": "Front-end developer",
+        "start_date": "01/2023",
+        "end_date": "06/2023",
+        "present": false
+      }
+    },
+    {
+      "id": 3,
+      "company": {
+        "name": "MEC Academy",
+        "location": "Dokki",
+        "job_type": "Part Time",
+        "job_title": "Front-end developer",
+        "start_date": "10/2023",
+        "end_date": "",
+        "present": true
+      }
     }
   ]
 }

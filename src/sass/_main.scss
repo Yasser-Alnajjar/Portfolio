@@ -1,4 +1,5 @@
 @import './base/variables';
+@import './base/classes';
 @import './base/grid-system';
 
 // mixins
@@ -27,7 +28,6 @@
 
 // Helpers
 @import './base/helpers';
-@import './base/classes';
 @import './components/variants';
 @import './base/base';
 @import './base/containers';

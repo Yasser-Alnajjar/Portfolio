@@ -17,6 +17,12 @@
   flex-direction: row-reverse;
 }
 
+.inline {
+  display: inline;
+}
+.block {
+  display: block;
+}
 .cursor-default {
   cursor: default;
 }
@@ -75,4 +81,13 @@
 }
 .underline {
   text-decoration: underline;
+}
+.text-center {
+  text-align: center;
+}
+.text-start {
+  text-align: start;
+}
+.text-end {
+  text-align: end;
 }
