@@ -1,4 +1,6 @@
 @import './base/variables';
+@import './base/base';
+@import './base/functions';
 @import './base/classes';
 @import './base/grid-system';
 
@@ -29,5 +31,4 @@
 // Helpers
 @import './base/helpers';
 @import './components/variants';
-@import './base/base';
 @import './base/containers';

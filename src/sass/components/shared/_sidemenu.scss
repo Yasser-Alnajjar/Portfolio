@@ -7,11 +7,11 @@
   height: 100%;
   z-index: 12;
   backdrop-filter: blur(4px);
-  border-top: 1px solid $danger-500;
-  border-bottom: 1px solid $danger-500;
+  border-top: 1px solid var(--danger);
+  border-bottom: 1px solid var(--danger);
   transform: translateY(-100%);
   transition: $delay ease-in-out;
-  background-color: $light;
+  background-color: var(--white);
   &.open {
     transform: translateY(0);
   }
@@ -27,7 +27,7 @@
       transition: 0.2s ease-in-out;
       position: relative;
       &:hover {
-        color: $danger-500;
+        color: var(--danger);
         transform: translateY(-5px);
         &::after {
           scale: 1;
@@ -50,19 +50,19 @@
           transform: translate(-50%, 0);
           width: fit-content;
           height: fit-content;
-          color: $danger;
+          color: var(--danger);
           transition: $delay ease-in-out;
           opacity: 0;
           visibility: hidden;
-          border: 1px solid $danger;
+          border: 1px solid var(--danger);
           padding: 0.3rem 0.5rem;
           border-radius: 6px;
           z-index: 20;
-          background-color: $white-100;
+          background-color: var(--white);
         }
       }
       & a.active {
-        color: $danger;
+        color: var(--danger);
       }
     }
   }
@@ -70,15 +70,15 @@
 
 body.dark {
   .navbar {
-    background-color: opacity($dark);
+    background-color: opacity($black);
   }
   .sidemenu {
-    background-color: $dark;
+    background-color: var(--black);
     &-list {
       &-item {
         a {
           &::after {
-            background-color: $dark;
+            background-color: var(--black);
           }
         }
       }

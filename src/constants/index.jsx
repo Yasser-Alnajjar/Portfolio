@@ -119,6 +119,30 @@ const outlineButtonVariants = cva('btn-outline', {
     align: 'center',
   },
 });
+const BadgeVariants = cva('badge', {
+  variants: {
+    variant: {
+      ...variantData,
+    },
+    rounded: {
+      true: 'rounded',
+      pill: 'pill',
+      circle: 'circle',
+    },
+    size: {
+      xs: 'text-xs px-1 py-0',
+      sm: 'text-sm px-2 py-2',
+      base: 'text-base px-1 py-1',
+      lg: 'text-lg px-1 py-1',
+      xl: 'text-xl px-1 py-1',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    rounded: 'pill',
+  },
+});
+
 const socialLinks = [
   {
     id: 1,
@@ -415,29 +439,7 @@ const skills = [
     direction: '100',
   },
 ];
-const BadgeVariants = cva('badge', {
-  variants: {
-    variant: {
-      ...variantData,
-    },
-    rounded: {
-      true: 'rounded',
-      pill: 'pill',
-      circle: 'circle',
-    },
-    size: {
-      xs: 'text-xs px-1 py-0',
-      sm: 'text-sm px-2 py-2',
-      base: 'text-base px-1 py-1',
-      lg: 'text-lg px-1 py-1',
-      xl: 'text-xl px-1 py-1',
-    },
-  },
-  defaultVariants: {
-    variant: 'primary',
-    rounded: 'pill',
-  },
-});
+
 export {
   BadgeVariants,
   buttonVariants,

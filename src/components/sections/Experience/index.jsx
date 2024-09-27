@@ -32,48 +32,18 @@ export default function Experience({ data }) {
               <span>{item.company.location}</span>
             </div>
             <div>
-              {item?.projects &&
-                item?.projects.length > 0 &&
-                item?.projects.map((project) => (
-                  <div key={project.id}>
-                    {project.production.length > 0 && (
-                      <Title className="my-4">Production</Title>
-                    )}
-                    {project.production.map((link) => (
-                      <ul key={link.id}>
-                        <li className="mb-2">
-                          <a className="underline text-base" href={link}>
-                            {link}
-                          </a>
-                        </li>
-                      </ul>
-                    ))}
-                    {project.developed.length > 0 && (
-                      <Title className="my-4">Developed</Title>
-                    )}
-                    {project.developed.map((link) => (
-                      <ul key={link.id}>
-                        <li className=" mb-2">
-                          <a className="underline text-base" href={link}>
-                            {link}
-                          </a>
-                        </li>
-                      </ul>
-                    ))}
-                    {project.enhanced.length > 0 && (
-                      <Title className="my-4">Enhanced</Title>
-                    )}
-                    {project.enhanced.map((link) => (
-                      <ul key={link.id}>
-                        <li className="mb-2">
-                          <a className="underline text-base" href={link}>
-                            {link}
-                          </a>
-                        </li>
-                      </ul>
-                    ))}
-                  </div>
-                ))}
+              <h3 className="my-2">Projects</h3>
+              <ul>
+                {item?.projects &&
+                  item?.projects.length > 0 &&
+                  item?.projects.map((project) => (
+                    <li className="mb-2" key={project}>
+                      <a className="underline text-base" href={project}>
+                        {project}
+                      </a>
+                    </li>
+                  ))}
+              </ul>
             </div>
           </div>
         </div>

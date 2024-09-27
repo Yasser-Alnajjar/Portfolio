@@ -1,28 +1,28 @@
 @import './sass/main';
 body {
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color $delay ease-in-out;
   cursor: url('./assets/cursor.png'), auto;
   ::selection {
-    background-color: $dark;
-    color: $light;
+    background-color: var(--black);
+    color: var(--white);
   }
 }
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: $danger-500;
+  background-color: var(--danger);
   border-radius: 20px;
 }
 body.dark {
-  background-color: $dark;
-  color: $light;
+  background-color: var(--black);
+  color: var(--white);
   ::selection {
-    background-color: $light;
-    color: $dark;
+    background-color: var(--white);
+    color: var(--black);
   }
   .privacy-screen {
-    background-color: $dark;
+    background-color: var(--black);
   }
 }
 .privacy-screen {
@@ -31,7 +31,7 @@ body.dark {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $gray-200;
+  background-color: var(--gray);
   z-index: 6;
-  border: 1px solid $gray-400;
+  border: 1px solid var(--gray);
 }

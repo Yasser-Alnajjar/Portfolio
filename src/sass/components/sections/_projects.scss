@@ -6,7 +6,7 @@
   &-link {
     transition: $delay ease-in-out;
     &:hover {
-      color: $danger;
+      color: var(--danger);
     }
   }
 }

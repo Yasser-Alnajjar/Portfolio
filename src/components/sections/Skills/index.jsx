@@ -6,7 +6,7 @@ export default function Skills() {
   return (
     <section className="skills my-10">
       <Title>Skills</Title>
-      <div className="row overflow-hidden">
+      <div className="row pb-4 overflow-hidden">
         {skills.map((skill) => (
           <motion.div className="col-12 col-sm-6 col-lg-4" key={skill.id}>
             <motion.div

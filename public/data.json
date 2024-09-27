@@ -12,25 +12,17 @@
         "present": true
       },
       "projects": [
-        {
-          "id": 1,
-          "production": [
-            "https://himashstyle.com"
-          ],
-          "developed": [
-            "https://mobile.totplatform.net",
-            "https://realestate.totplatform.net",
-            "https://alshafk.totplatform.net",
-            "http://palme.totplatform.net",
-            "https://menspa.totplatform.net/en",
-            "https://bakery.totplatform.net/en"
-          ],
-          "enhanced": [
-            "https://decor.totplatform.net",
-            "https://furniture.totplatform.net/en",
-            "https://restaurant.totplatform.net"
-          ]
-        }
+        "https://alkhbaz.com/en",
+        "https://himashstyle.com",
+        "https://mobile.totplatform.net",
+        "https://realestate.totplatform.net",
+        "https://alshafk.totplatform.net",
+        "http://palme.totplatform.net",
+        "https://menspa.totplatform.net/en",
+        "https://bakery.totplatform.net/en",
+        "https://decor.totplatform.net",
+        "https://furniture.totplatform.net/en",
+        "https://restaurant.totplatform.net"
       ]
     },
     {

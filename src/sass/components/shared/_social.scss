@@ -17,7 +17,7 @@
       transition: $delay ease-in-out;
       &:hover {
         transform: translateY(-5px);
-        color: $danger-500;
+        color: var(--danger);
       }
     }
   }
@@ -28,7 +28,7 @@
     width: 1px;
     height: 150px;
     margin: 0px auto;
-    background-color: $dark;
+    background-color: var(--danger);
   }
 }
 .nav-right {
@@ -46,7 +46,7 @@
     width: 1px;
     height: 150px;
     margin: 0px auto;
-    background-color: $dark;
+    background-color: var(--danger);
   }
   a {
     transition: $delay ease-in-out;
@@ -59,23 +59,11 @@
     writing-mode: vertical-rl;
     &:hover {
       transform: translateY(-5px);
-      color: $danger-500;
+      color: var(--danger);
     }
   }
 }
 
-body.dark {
-  .nav-right {
-    &::after {
-      background-color: $light;
-    }
-  }
-  .aside {
-    &::after {
-      background-color: $light;
-    }
-  }
-}
 @media (max-width: 900px) {
   .aside,
   .nav-right {

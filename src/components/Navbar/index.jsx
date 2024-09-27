@@ -11,6 +11,7 @@ import cv from '../../assets/Front_End_Yasser_Al_Najjar.pdf';
 export default function Navbar() {
   const dispatch = useDispatch();
   const [isMoved, setIsMoved] = useState(false);
+
   useEffect(() => {
     document.addEventListener('scroll', () => {
       if (window.scrollY > 0) {
@@ -73,6 +74,19 @@ export default function Navbar() {
             <div className="navbar-toggle">
               <ToggleMode />
             </div>
+          </li>
+          <li>
+            <input
+              className="control p-0"
+              style={{ width: '30px', height: '30px' }}
+              type="color"
+              onChange={(e) => {
+                document.documentElement.style.setProperty(
+                  '--danger',
+                  e.target.value,
+                );
+              }}
+            />
           </li>
         </ul>
       </div>

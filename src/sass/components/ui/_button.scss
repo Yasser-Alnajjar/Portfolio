@@ -38,7 +38,7 @@
     gap: 0.2rem;
     padding: 0.5rem;
     .toggler-icon {
-      background-color: $dark;
+      background-color: $black;
       height: 2px;
       width: 20px;
       border-radius: 6px;
@@ -51,6 +51,6 @@
 
   &:hover {
     transform: translate(-5px, -5px);
-    box-shadow: 4px 4px 0 0 $orange;
+    box-shadow: 4px 4px 0 0 var(--danger);
   }
 }

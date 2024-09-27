@@ -6,7 +6,7 @@
   gap: 1.5rem;
   margin-bottom: 2rem;
   & .line {
-    background-color: $dark;
+    background-color: var(--black);
     height: 2px;
     flex: 1 0 0%;
     display: block;
@@ -23,7 +23,7 @@
 body.dark {
   .title {
     & .line {
-      background-color: $light;
+      background-color: var(--white);
     }
   }
 }

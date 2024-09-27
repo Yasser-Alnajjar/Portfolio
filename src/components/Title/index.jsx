@@ -4,7 +4,7 @@ import { outlineButtonVariants } from '../../constants';
 
 export default function Title({ children, link, name, line, className }) {
   return (
-    <h2 className={`title ${className}`}>
+    <h2 className={`title text-danger ${className}`}>
       {children}
       {!line && <span className={`line ${link ? 'opacity' : ''}`} />}
       {link && (

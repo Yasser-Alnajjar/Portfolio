@@ -16,10 +16,10 @@
     @include flex(center, center);
     gap: 1.5rem;
     &-item {
-      transition: 0.2s ease-in-out;
+      transition: transform $delay ease-in-out;
       position: relative;
       &:hover {
-        color: $danger-500;
+        color: var(--danger);
         transform: translateY(-5px);
         &::after {
           scale: 1;
@@ -27,25 +27,12 @@
       }
       & a {
         position: relative;
-        transition: 0.2s ease-in-out;
+        transition: $delay ease-in-out;
         display: block;
       }
       & a.active {
-        color: $danger;
-        &::after {
-          content: '';
-          position: absolute;
-          z-index: -1;
-          bottom: -20px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: radial-gradient(circle at bottom, $danger 5%, #0000 60%);
-          width: 25px;
-          height: 25px;
-          scale: 1;
-          transition: transform 0.2s ease-out;
-          transform-origin: bottom;
-        }
+        color: var(--danger);
+        font-weight: bold;
       }
     }
   }
