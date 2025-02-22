@@ -1,24 +1,14 @@
-import { useState } from 'react';
-
 import OutlineButton from '../ui/OutlineButton';
+import { useTheme } from '../../hooks';
 
 export default function ToggleMode() {
-  const [mode, setMode] = useState(document.body.classList.contains('dark'));
-  const handleClick = () => {
-    setMode(!mode);
-    if (mode) {
-      document.body.classList.remove('dark');
-    } else {
-      document.body.classList.add('dark');
-    }
-  };
-
-  return mode ? (
-    <OutlineButton variant="danger" border={false} onClick={handleClick}>
+  const {theme,toggleTheme}=useTheme();
+  return theme ? (
+    <OutlineButton variant="danger" border={false} onClick={toggleTheme}>
       🌕
     </OutlineButton>
   ) : (
-    <OutlineButton variant="danger" border={false} onClick={handleClick}>
+    <OutlineButton variant="danger" border={false} onClick={toggleTheme}>
       🌑
     </OutlineButton>
   );

@@ -1,4 +1,4 @@
-import data from '../../../public/data.json';
+import data from '../../assets/data.json';
 
 import Experience from '../../components/sections/Experience';
 import Hero from '../../components/sections/Hero';

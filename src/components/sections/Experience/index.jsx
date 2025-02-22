@@ -26,25 +26,20 @@ export default function Experience({ data }) {
                 At
               </Badge>
               <span>{item.company.name}</span>
-              <Badge variant="danger" size="xs">
-                In
-              </Badge>
-              <span>{item.company.location}</span>
             </div>
-            <div>
-              <h3 className="my-2">Projects</h3>
-              <ul>
-                {item?.projects &&
-                  item?.projects.length > 0 &&
-                  item?.projects.map((project) => (
-                    <li className="mb-2" key={project}>
-                      <a className="underline text-base" href={project}>
-                        {project}
-                      </a>
-                    </li>
-                  ))}
-              </ul>
-            </div>
+            <p className="my-4">{item.company.description}</p>
+            <h3 className="text-lg font-semibold mb-4">
+              Benefits & Responsibilities
+            </h3>
+            <ul className="list-disc list-inside">
+              {item?.benefits &&
+                item?.benefits.length > 0 &&
+                item?.benefits.map((benefit) => (
+                  <li className="mb-2" key={benefit}>
+                    {benefit}
+                  </li>
+                ))}
+            </ul>
           </div>
         </div>
       ))}

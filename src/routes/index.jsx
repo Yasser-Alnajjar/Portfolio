@@ -4,8 +4,9 @@ import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Homepage from '../pages/Home';
 import Projects from '../pages/Projects';
+import {createBrowserRouter} from "react-router-dom"
 
-const routes = [
+const routes = createBrowserRouter([
   {
     path: '',
     element: <Home />,
@@ -14,9 +15,9 @@ const routes = [
       { path: '/about', element: <About /> },
       { path: '/projects', element: <Projects /> },
       { path: '/projects/:id', element: <ProjectDetails /> },
-      { path: '/contact', element: <Contact /> },
+      // { path: '/contact', element: <Contact /> },
     ],
   },
-];
+]);
 
 export default routes;

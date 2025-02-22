@@ -61,3 +61,17 @@
     color: contrast-color($color);
   }
 }
+.text-muted {
+  color: rgba(0, 0, 0, 0.7);
+}
+body.dark {
+  .text-muted {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+.list-disc {
+  list-style-type: disc;
+}
+.list-inside {
+  list-style-position: inside;
+}

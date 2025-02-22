@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Tilt } from 'react-tilt';
 import { Link } from 'react-router-dom';
 import { LuExternalLink, LuGithub } from 'react-icons/lu';
@@ -18,20 +17,8 @@ export default function Projects() {
             className="col-12 col-sm-6 col-lg-4 overflow-hidden"
             key={project.id}
           >
-            <motion.div
-              className="card border-gray-100"
-              initial={{
-                translateX: `${project.direction}%`,
-                zIndex: -2,
-                visibility: 'hidden',
-              }}
-              whileInView={{
-                translateX: '0',
-                zIndex: 1,
-                visibility: 'visible',
-              }}
-              transition={{ duration: 1.5 }}
-            >
+            <div
+              className="card border-gray-100">
               <div className="card-img">
                 <img
                   className="img-fluid"
@@ -68,7 +55,7 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </Tilt>
         ))}
       </div>

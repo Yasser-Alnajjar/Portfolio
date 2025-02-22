@@ -79,6 +79,7 @@ export default function Contact() {
               name="name"
               placeholder="Full Name"
               type="text"
+              variant='dark'
             />
           </div>
           <div className="col-12 col-sm-6">
@@ -89,6 +90,7 @@ export default function Contact() {
               name="email"
               placeholder="Email"
               type="email"
+              variant='dark'
             />
           </div>
           <Label>Message</Label>
@@ -100,6 +102,7 @@ export default function Contact() {
               placeholder="Message"
               textarea
               type="text"
+              variant='dark'
             />
           </div>
           <div className="col-12">

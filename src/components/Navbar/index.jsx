@@ -56,9 +56,9 @@ export default function Navbar() {
           <li className="navbar-list-item">
             <NavLink to="/projects">Projects</NavLink>
           </li>
-          <li className="navbar-list-item">
+          {/* <li className="navbar-list-item">
             <NavLink to="/contact">Contact Me</NavLink>
-          </li>
+          </li> */}
           <li className="navbar-list-item">
             <a
               className={outlineButtonVariants({
