@@ -1,13 +1,9 @@
 import { Navbar } from '@/components';
 import { socialLinks } from '@/constants';
 import SideMenu from '@/components/SideMenu';
-import Hero from '@/components/sections/Hero';
-import Experience from '@/components/sections/Experience';
-import Projects from '@/components/sections/Projects';
-import Skills from '@/components/sections/Skills';
-import data from '@/assets/data.json';
+import About from '@/pages/About';
 
-export default function Home() {
+export default function AboutPage() {
   return (
     <main className="relative">
       <Navbar />
@@ -46,10 +42,7 @@ export default function Home() {
       </div>
       
       <section className="container mx-auto px-4 py-8">
-        <Hero />
-        <Experience data={data.experience} />
-        <Projects />
-        <Skills />
+        <About />
       </section>
     </main>
   );

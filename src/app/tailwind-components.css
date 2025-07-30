@@ -1,0 +1,271 @@
+@layer components {
+  /* Form Controls */
+  .control {
+    @apply w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all duration-300;
+  }
+  
+  .control.primary {
+    @apply focus:ring-primary;
+  }
+  
+  .control.indigo {
+    @apply focus:ring-indigo;
+  }
+  
+  .control.pink {
+    @apply focus:ring-pink;
+  }
+  
+  .control.danger {
+    @apply focus:ring-danger;
+  }
+  
+  .control.orange {
+    @apply focus:ring-orange;
+  }
+  
+  .control.warning {
+    @apply focus:ring-warning;
+  }
+  
+  .control.green {
+    @apply focus:ring-green;
+  }
+  
+  .control.teal {
+    @apply focus:ring-teal;
+  }
+  
+  .control.cyan {
+    @apply focus:ring-cyan;
+  }
+  
+  .control.white {
+    @apply focus:ring-white;
+  }
+  
+  .control.dark {
+    @apply focus:ring-black;
+  }
+  
+  /* Button Styles */
+  .btn {
+    @apply rounded-lg border border-transparent px-3 py-2 text-base font-medium leading-none cursor-pointer transition-all duration-300 focus:outline-none active:opacity-70;
+  }
+  
+  .btn-outline {
+    @apply btn relative overflow-hidden hover:translate-x-[-5px] hover:translate-y-[-5px] hover:shadow-[4px_4px_0_0_theme(colors.danger)];
+  }
+  
+  /* Button Variants */
+  .btn-primary {
+    @apply bg-primary text-white;
+  }
+  
+  .btn-indigo {
+    @apply bg-indigo text-white;
+  }
+  
+  .btn-pink {
+    @apply bg-pink text-white;
+  }
+  
+  .btn-danger {
+    @apply bg-danger text-white;
+  }
+  
+  .btn-orange {
+    @apply bg-orange text-white;
+  }
+  
+  .btn-warning {
+    @apply bg-warning text-black;
+  }
+  
+  .btn-green {
+    @apply bg-green text-white;
+  }
+  
+  .btn-teal {
+    @apply bg-teal text-white;
+  }
+  
+  .btn-cyan {
+    @apply bg-cyan text-black;
+  }
+  
+  .btn-white {
+    @apply bg-white text-black;
+  }
+  
+  .btn-black {
+    @apply bg-black text-white;
+  }
+  
+  .btn-gray {
+    @apply bg-gray text-white;
+  }
+  
+  /* Button Outline Variants */
+  .btn-outline-primary {
+    @apply border-primary text-primary hover:bg-primary hover:text-white;
+  }
+  
+  .btn-outline-indigo {
+    @apply border-indigo text-indigo hover:bg-indigo hover:text-white;
+  }
+  
+  .btn-outline-pink {
+    @apply border-pink text-pink hover:bg-pink hover:text-white;
+  }
+  
+  .btn-outline-danger {
+    @apply border-danger text-danger hover:bg-danger hover:text-white;
+  }
+  
+  .btn-outline-orange {
+    @apply border-orange text-orange hover:bg-orange hover:text-white;
+  }
+  
+  .btn-outline-warning {
+    @apply border-warning text-warning hover:bg-warning hover:text-black;
+  }
+  
+  .btn-outline-green {
+    @apply border-green text-green hover:bg-green hover:text-white;
+  }
+  
+  .btn-outline-teal {
+    @apply border-teal text-teal hover:bg-teal hover:text-white;
+  }
+  
+  .btn-outline-cyan {
+    @apply border-cyan text-cyan hover:bg-cyan hover:text-black;
+  }
+  
+  .btn-outline-white {
+    @apply border-white text-white hover:bg-white hover:text-black;
+  }
+  
+  .btn-outline-black {
+    @apply border-black text-black hover:bg-black hover:text-white;
+  }
+  
+  .btn-outline-gray {
+    @apply border-gray text-gray hover:bg-gray hover:text-white;
+  }
+  
+  /* Badge Styles */
+  .badge {
+    @apply inline-block text-center;
+  }
+  
+  .badge.pill {
+    @apply rounded-full px-2 py-1;
+  }
+  
+  .badge.circle {
+    @apply rounded-full aspect-square flex items-center justify-center;
+  }
+  
+  /* Badge Variants */
+  .badge-primary {
+    @apply bg-primary text-white;
+  }
+  
+  .badge-indigo {
+    @apply bg-indigo text-white;
+  }
+  
+  .badge-pink {
+    @apply bg-pink text-white;
+  }
+  
+  .badge-danger {
+    @apply bg-danger text-white;
+  }
+  
+  .badge-orange {
+    @apply bg-orange text-white;
+  }
+  
+  .badge-warning {
+    @apply bg-warning text-black;
+  }
+  
+  .badge-green {
+    @apply bg-green text-white;
+  }
+  
+  .badge-teal {
+    @apply bg-teal text-white;
+  }
+  
+  .badge-cyan {
+    @apply bg-cyan text-black;
+  }
+  
+  .badge-white {
+    @apply bg-white text-black;
+  }
+  
+  .badge-black {
+    @apply bg-black text-white;
+  }
+  
+  .badge-gray {
+    @apply bg-gray text-white;
+  }
+  
+  /* Button Group */
+  .btn-group {
+    @apply flex justify-center items-center gap-1;
+  }
+  
+  /* Toggler Button */
+  .btn.toggler {
+    @apply flex items-center justify-center flex-col rounded-md border-none gap-0.5 p-2;
+  }
+  
+  .toggler-icon {
+    @apply bg-black h-0.5 w-5 rounded-md;
+  }
+  
+  /* Icon Button */
+  .btn.icon {
+    @apply rounded-full p-2 min-w-[10px] min-h-[10px];
+  }
+  
+  /* Utility Classes */
+  .img-fluid {
+    @apply max-w-full h-auto;
+  }
+  
+  .text-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  
+  /* Layout Styles */
+  .section {
+    @apply py-16;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-black rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+  }
+  
+  /* Animations */
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

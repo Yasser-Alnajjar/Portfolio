@@ -1,18 +1,15 @@
-import { Navbar } from '@/components';
-import { socialLinks } from '@/constants';
-import SideMenu from '@/components/SideMenu';
-import Hero from '@/components/sections/Hero';
-import Experience from '@/components/sections/Experience';
-import Projects from '@/components/sections/Projects';
-import Skills from '@/components/sections/Skills';
-import data from '@/assets/data.json';
+'use client';
 
-export default function Home() {
+import { ReactNode } from 'react';
+import { socialLinks } from '@/constants';
+
+interface HomeLayoutProps {
+  children: ReactNode;
+}
+
+export default function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <main className="relative">
-      <Navbar />
-      <SideMenu />
-      
       {/* Left Social Links */}
       <aside className="fixed left-10 bottom-0 hidden lg:block">
         <ul className="flex flex-col items-center gap-6 after:content-[''] after:w-[1px] after:h-[90px] after:bg-gray after:mt-6">
@@ -46,10 +43,7 @@ export default function Home() {
       </div>
       
       <section className="container mx-auto px-4 py-8">
-        <Hero />
-        <Experience data={data.experience} />
-        <Projects />
-        <Skills />
+        {children}
       </section>
     </main>
   );
