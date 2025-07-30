@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { IoDocumentTextOutline } from 'react-icons/io5';
-import { IoIosCloseCircleOutline } from 'react-icons/io';
-import { MdOutlineAttachEmail } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import { MdOutlineAttachEmail } from "react-icons/md";
+import { useSelector, useDispatch } from "react-redux";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { socialLinks } from '../../constants';
-import { themeSelector, toggleMenu } from '../../redux/slices/theme.slice';
-import ToggleMode from '../ToggleMode';
-import Button from '../ui/Button';
-const cv = '/assets/Front_End_Yasser_Al_Najjar.pdf';
+import { socialLinks } from "../../constants";
+import { themeSelector, toggleMenu } from "../../redux/slices/theme.slice";
+import ToggleMode from "../ToggleMode";
+import Button from "../ui/Button";
+const cv = "/assets/Front_End_Yasser_Al_Najjar.pdf";
 
 export default function SideMenu() {
   const theme = useSelector(themeSelector);
@@ -20,32 +20,39 @@ export default function SideMenu() {
   const handleMenu = () => {
     dispatch(toggleMenu());
   };
-  
+
   return (
-    <aside className={`fixed top-0 right-0 w-full h-full z-20 backdrop-blur-sm border-t border-b border-danger transition-transform duration-300 ease-in-out bg-white dark:bg-black ${
-      theme.openMenu ? 'translate-y-0' : '-translate-y-full'
-    }`}>
+    <aside
+      className={`fixed top-0 right-0 w-full h-full z-20 backdrop-blur-sm border-t border-b border-danger transition-transform duration-300 ease-in-out bg-white dark:bg-black ${
+        theme.openMenu ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="flex justify-end">
         <Button
           className="mr-4 text-danger"
           variant="transparent"
           onClick={handleMenu}
+          fullWidth={false}
+          size="sm"
         >
           <IoIosCloseCircleOutline size={25} />
         </Button>
       </div>
-      
+
       <ul className="flex flex-col items-center justify-center gap-6">
         {[
-          { to: '/', label: 'Home' },
-          { to: '/about', label: 'About' },
-          { to: '/contact', label: 'Contact Me' },
+          { to: "/", label: "Home" },
+          { to: "/about", label: "About" },
+          { to: "/contact", label: "Contact Me" },
         ].map((link) => (
-          <li key={link.to} className="transition-all duration-200 ease-in-out relative hover:text-danger hover:-translate-y-1.5">
-            <Link 
-              onClick={handleMenu} 
+          <li
+            key={link.to}
+            className="transition-all duration-200 ease-in-out relative hover:text-danger hover:-translate-y-1.5"
+          >
+            <Link
+              onClick={handleMenu}
               href={link.to}
-              className={pathname === link.to ? 'text-danger' : ''}
+              className={pathname === link.to ? "text-danger" : ""}
             >
               {link.label}
             </Link>
@@ -57,10 +64,13 @@ export default function SideMenu() {
           </div>
         </li>
       </ul>
-      
+
       <ul className="flex flex-wrap flex-row gap-5 justify-center mt-5">
         {socialLinks.map((link) => (
-          <li key={link.id} className="transition-all duration-200 ease-in-out relative hover:text-danger hover:-translate-y-1.5">
+          <li
+            key={link.id}
+            className="transition-all duration-200 ease-in-out relative hover:text-danger hover:-translate-y-1.5"
+          >
             <a
               className="relative px-2 py-1 transition-all duration-300 ease-in-out group"
               data-name={link.name}
@@ -87,8 +97,8 @@ export default function SideMenu() {
           </a>
         </li>
         <li className="transition-all duration-200 ease-in-out relative hover:text-danger hover:-translate-y-1.5">
-          <a 
-            className="relative px-2 py-1 transition-all duration-300 ease-in-out group" 
+          <a
+            className="relative px-2 py-1 transition-all duration-300 ease-in-out group"
             href={cv}
           >
             <IoDocumentTextOutline size={22} />
