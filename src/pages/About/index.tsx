@@ -34,7 +34,7 @@ export default function About() {
           </div>
         </div>
         <div className="about-img">
-          <img className="img-fluid" src={yasser} alt="Yasser" />
+          <img className="img-fluid" src={yasser.src} alt="Yasser" />
         </div>
       </div>
     </section>

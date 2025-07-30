@@ -1,5 +1,15 @@
 import { twMerge } from 'tailwind-merge';
 
+interface InputProps {
+  variant?: string;
+  textarea?: boolean;
+  border?: boolean;
+  placeholder?: string;
+  id?: string;
+  className?: string;
+  [key: string]: unknown;
+}
+
 export default function Input({
   variant = 'dark',
   textarea,
@@ -8,7 +18,7 @@ export default function Input({
   id,
   className = '',
   ...props
-}) {
+}: InputProps) {
   const classes = [
     'control',
     variant && variant,

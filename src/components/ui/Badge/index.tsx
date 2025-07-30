@@ -1,5 +1,14 @@
 import { twMerge } from 'tailwind-merge';
 
+interface BadgeProps {
+  children: React.ReactNode;
+  variant?: string;
+  rounded?: string | boolean;
+  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+  className?: string;
+  [key: string]: unknown;
+}
+
 export default function Badge({
   children,
   variant = 'primary',
@@ -7,7 +16,7 @@ export default function Badge({
   size = 'base',
   className = '',
   ...rest
-}) {
+}: BadgeProps) {
   const classes = [
     'badge',
     variant && `badge-${variant}`,

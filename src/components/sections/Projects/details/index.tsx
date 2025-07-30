@@ -11,7 +11,8 @@ interface Project {
 }
 
 export default function ProjectDetails() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params?.id as string;
   const [data, setData] = useState<Project | null>(null);
   
   useEffect(() => {

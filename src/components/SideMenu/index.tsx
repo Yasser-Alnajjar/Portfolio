@@ -6,6 +6,7 @@ import { MdOutlineAttachEmail } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import { socialLinks } from "../../constants";
 import { themeSelector, toggleMenu } from "../../redux/slices/theme.slice";
@@ -14,12 +15,21 @@ import Button from "../ui/Button";
 const cv = "/assets/Front_End_Yasser_Al_Najjar.pdf";
 
 export default function SideMenu() {
+  const [isClient, setIsClient] = useState(false);
   const theme = useSelector(themeSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const pathname = usePathname();
   const handleMenu = () => {
     dispatch(toggleMenu());
   };
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <aside

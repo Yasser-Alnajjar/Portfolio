@@ -13,7 +13,14 @@ const ModalVariants = cva('modal', {
   },
 });
 
-export default function Modal({ variant, open, close, children }) {
+interface ModalProps {
+  variant?: 'primary' | 'indigo' | 'pink' | 'danger' | 'orange' | 'warning' | 'green' | 'teal' | 'cyan' | 'gray' | 'black' | 'white';
+  open: boolean;
+  close: (value: boolean) => void;
+  children: React.ReactNode;
+}
+
+export default function Modal({ variant, open, close, children }: ModalProps) {
   return (
     <div
       className={`${open ? 'open-modal' : ''} ${mergeClass(

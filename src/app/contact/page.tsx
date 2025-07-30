@@ -2,12 +2,15 @@ import { Navbar } from '@/components';
 import { socialLinks } from '@/constants';
 import SideMenu from '@/components/SideMenu';
 import Contact from '@/pages/Contact';
+import ClientOnly from '@/components/ClientOnly';
 
 export default function ContactPage() {
   return (
     <main className="relative">
-      <Navbar />
-      <SideMenu />
+      <ClientOnly>
+        <Navbar />
+        <SideMenu />
+      </ClientOnly>
       
       {/* Left Social Links */}
       <aside className="fixed left-10 bottom-0 hidden lg:block">

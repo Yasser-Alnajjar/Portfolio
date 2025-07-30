@@ -1,5 +1,6 @@
-import { Navbar } from '@/components';
 import { socialLinks } from '@/constants';
+import ClientOnly from '@/components/ClientOnly';
+import { Navbar } from '@/components';
 import SideMenu from '@/components/SideMenu';
 import Hero from '@/components/sections/Hero';
 import Experience from '@/components/sections/Experience';
@@ -10,8 +11,10 @@ import data from '@/assets/data.json';
 export default function Home() {
   return (
     <main className="relative">
-      <Navbar />
-      <SideMenu />
+      <ClientOnly>
+        <Navbar />
+        <SideMenu />
+      </ClientOnly>
       
       {/* Left Social Links */}
       <aside className="fixed left-10 bottom-0 hidden lg:block">

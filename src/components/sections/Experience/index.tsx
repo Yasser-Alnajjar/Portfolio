@@ -1,7 +1,28 @@
 import Title from '../../Title';
 import Badge from '../../ui/Badge';
 
-export default function Experience({ data }) {
+interface Company {
+  name: string;
+  job_type: string;
+  start_date: string;
+  end_date?: string;
+  present: boolean;
+  job_title: string;
+  description?: string;
+  location?: string;
+}
+
+interface ExperienceItem {
+  id: number;
+  company: Company;
+  benefits?: string[];
+}
+
+interface ExperienceProps {
+  data: ExperienceItem[];
+}
+
+export default function Experience({ data }: ExperienceProps) {
   return (
     <section className="experience">
       <Title>Experience</Title>
@@ -27,7 +48,9 @@ export default function Experience({ data }) {
               </Badge>
               <span>{item.company.name}</span>
             </div>
-            <p className="my-4">{item.company.description}</p>
+            {item.company.description && (
+              <p className="my-4">{item.company.description}</p>
+            )}
             <h3 className="text-lg font-semibold mb-4">
               Benefits & Responsibilities
             </h3>

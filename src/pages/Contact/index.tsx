@@ -18,20 +18,20 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState(formEmpty);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     if (form.email !== '' && form.name !== '' && form.message !== '') {
       emailjs
         .send(
-          import.meta.env.VITE_SERVICE_KEY,
-          import.meta.env.VITE_TEMPLATE_KEY,
+          process.env.NEXT_PUBLIC_SERVICE_KEY!,
+          process.env.NEXT_PUBLIC_TEMPLATE_KEY!,
           {
             from_name: form.name,
             from_email: form.email,
@@ -39,7 +39,7 @@ export default function Contact() {
             to_email: 'yasseralnajjar72@gmail.com',
             message: form.message,
           },
-          import.meta.env.VITE_PUBLIC_KEY,
+          process.env.NEXT_PUBLIC_PUBLIC_KEY!,
         )
         .then(() => {
           setLoading(false);

@@ -1,4 +1,4 @@
-import { Tilt } from 'react-tilt';
+// import { Tilt } from 'react-tilt';
 import { LuExternalLink, LuGithub } from 'react-icons/lu';
 
 import { projects } from '../../../constants';
@@ -12,7 +12,7 @@ export default function Projects() {
       </Title>
       <div className="row justify-start">
         {projects.slice(0, 6).map((project) => (
-          <Tilt
+          <div
             className="col-12 col-sm-6 col-lg-4 overflow-hidden"
             key={project.id}
           >
@@ -21,7 +21,7 @@ export default function Projects() {
               <div className="card-img">
                 <img
                   className="img-fluid"
-                  src={project.image}
+                  src={typeof project.image === 'string' ? project.image : project.image.src}
                   alt={project.title}
                 />
               </div>
@@ -56,7 +56,7 @@ export default function Projects() {
                 </div>
               </div>
             </div>
-          </Tilt>
+          </div>
         ))}
       </div>
     </section>
