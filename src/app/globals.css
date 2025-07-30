@@ -10,6 +10,20 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Custom colors */
+  --color-primary: #0d6efd;
+  --color-indigo: #6610f2;
+  --color-pink: #d63384;
+  --color-danger: #dc3545;
+  --color-orange: #fd7e14;
+  --color-warning: #ffc107;
+  --color-green: #198754;
+  --color-teal: #20c997;
+  --color-cyan: #0dcaf0;
+  --color-gray: #6c757d;
+  --color-black: #1a1c1f;
+  --color-white: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
