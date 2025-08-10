@@ -5,4 +5,4 @@ const nextConfig = {
   // React strict mode is enabled by default
 };
 
-module.exports = nextConfig;
+export default nextConfig;
