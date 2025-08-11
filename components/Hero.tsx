@@ -12,7 +12,7 @@ export interface IHero {
   title: string;
   description: string;
   cv_url: string;
-  image_url: string; // Supabase storage URL
+  image_url: string;
 }
 
 export const Hero = ({ data }: { data: IHero }) => {

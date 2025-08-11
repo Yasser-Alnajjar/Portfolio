@@ -9,6 +9,8 @@ import {
 } from "@components";
 import { supabase } from "@lib/supabaseClient";
 
+export const revalidate = 0;
+
 export default async function Page() {
   const { data: heroData } = await supabase.from("hero").select("*");
   const { data: aboutData } = await supabase.from("about_me").select("*");
