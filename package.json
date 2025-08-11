@@ -4,9 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build:linux": "rm -rf .next && bun run next build && cp -rf ./public/. ./.next/standalone/public && cp -rf ./.next/static/. ./.next/standalone/.next/static",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build:windows": "bun run next build && xcopy \".\\public\" \".\\.next\\standalone\\public\" /e /i /y && xcopy \".\\.next\\static\" \".\\.next\\standalone\\.next\\static\" /e /i /y",
+    "lint": "bun run format:fix && next lint",
+    "start": "PORT=3000 node server.js",
+    "start:dev:linux": "bun i && bun run build:linux && cd .next/standalone && bun start",
+    "start:dev:windows": "bun i && bun run build:windows && cd \".\\.next\\standalone\" && bun start",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write --list-different .",
+    "type-check": "npx tsc --noEmit",
+    "deps:update": "npx npm-check-updates --interactive --format group"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.0",
@@ -36,9 +44,11 @@
     "@radix-ui/react-toggle": "^1.1.0",
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.2.7",
+    "@supabase/supabase-js": "^2.54.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
+    "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

@@ -3,77 +3,9 @@
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Building } from "lucide-react";
 import { Badge, Button } from "./atoms";
+import { IExperience } from "@types";
 
-export const Experience = () => {
-  const experiences = [
-    {
-      title: "Senior Front End Developer",
-      company: "Falcon Focus (Remotely)",
-      location: "Saudi Arabia",
-      period: "June 2025 - Present",
-      description: [
-        "Architected and implemented a modern, scalable admin dashboard from the ground up",
-        "Built using fully modular component architecture with reusable data tables and dynamic forms",
-        "Integrated robust authentication and session handling via NextAuth.js with role-based access control",
-        "Implemented full internationalization (i18n) with next-intl including RTL layout support",
-        "Designed with Tailwind CSS and Shadcn/ui for consistency and accessibility",
-        "Leveraged Next.js App Router and server components for optimal performance",
-      ],
-      tech: [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Shadcn/ui",
-        "NextAuth.js",
-        "next-intl",
-      ],
-    },
-    {
-      title: "Senior Front End Developer",
-      company: "Tot Platform (On-Site)",
-      location: "Egypt",
-      period: "October 2023 - June 2025",
-      description: [
-        "Led development of Alkhbaz v2 e-commerce platform with pre-order cart features",
-        "Mentored team of four developers and created responsive website for mobile/desktop",
-        "Implemented user-agent based routing and multi-fulfillment center system",
-        "Developed G-Mobile e-commerce with dynamic product catalog and secure checkout",
-        "Built TUBEX corporate website with SMTP integration and file download capabilities",
-        "Created Storybook component library with MDX documentation and real-time previews",
-      ],
-      tech: [
-        "React.js",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Payment APIs",
-        "Storybook",
-      ],
-    },
-    {
-      title: "React Developer",
-      company: "Active 4 Web (On-Site)",
-      location: "Egypt",
-      period: "January 2022 - October 2023",
-      description: [
-        "Enhanced user experience by implementing responsive web designs",
-        "Developed reusable components to facilitate faster development timelines",
-        "Increased website traffic with SEO-friendly coding practices",
-        "Updated old code bases to modern development standards",
-        "Developed Easy CLI package for React and Vue component creation",
-        "Published and maintained NPM package with clear documentation",
-      ],
-      tech: [
-        "React.js",
-        "JavaScript",
-        "SEO",
-        "NPM Package",
-        "CLI Tools",
-        "Component Development",
-      ],
-    },
-  ];
-
+export const Experience = ({ data }: { data: Array<IExperience> }) => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-12 gap-4 lg:gap-8">
@@ -102,7 +34,7 @@ export const Experience = () => {
 
             {/* Experience Items */}
             <div className="space-y-10 sm:space-y-14">
-              {experiences.map((experience, index) => (
+              {data.map((experience, index) => (
                 <motion.div
                   key={index}
                   className={`relative flex flex-col md:flex-row items-start md:items-center ${
@@ -158,7 +90,7 @@ export const Experience = () => {
                           Key Responsibilities:
                         </h4>
                         <ul className="space-y-2 sm:space-y-3">
-                          {experience.description.map((item, i) => (
+                          {experience?.description?.map((item, i) => (
                             <li
                               key={i}
                               className="flex items-start space-x-2 text-muted-foreground text-xs sm:text-sm leading-relaxed"
@@ -176,7 +108,7 @@ export const Experience = () => {
                           Technologies & Skills:
                         </h4>
                         <div className="flex flex-wrap gap-2">
-                          {experience.tech.map((tech, i) => (
+                          {experience?.tech?.map((tech, i) => (
                             <Badge key={i} className="text-xs sm:text-sm">
                               {tech}
                             </Badge>
@@ -207,7 +139,16 @@ export const Experience = () => {
               Download my complete CV to see detailed information about my
               experience, education, and achievements in front-end development.
             </p>
-            <Button className="mx-auto">Download Full CV</Button>
+
+            <Button asChild className="mx-auto w-fit">
+              <a
+                href="https://njwagbcbljfyqapntvcf.supabase.co/storage/v1/object/public/cv/Yasser-Alnajjar.pdf"
+                download
+                target="_blank"
+              >
+                Download CV
+              </a>
+            </Button>
           </div>
         </motion.div>
       </div>

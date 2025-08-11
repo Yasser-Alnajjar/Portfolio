@@ -7,39 +7,49 @@ import {
   Experience,
   Contact,
 } from "@components";
-export default function Home() {
+import { supabase } from "@lib/supabaseClient";
+
+export default async function Page() {
+  const { data: heroData } = await supabase.from("hero").select("*");
+  const { data: aboutData } = await supabase.from("about_me").select("*");
+  const { data: skillsData } = await supabase.from("skills").select("*");
+  const { data: additionalData } = await supabase
+    .from("additional_skills")
+    .select("*");
+  const { data: projectsData } = await supabase.from("projects").select("*");
+  const { data: experienceData } = await supabase
+    .from("experience")
+    .select("*");
+  const { data: contactsData } = await supabase.from("contacts").select("*");
+
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Home Section */}
       <section id="home" className="pt-24 pb-16 lg:pt-32">
-        <Hero />
+        <Hero data={heroData?.[0]} />
       </section>
-
-      {/* About Section */}
       <section id="about" className="py-16">
-        <About />
+        <About data={aboutData as any} />
       </section>
-
-      {/* Skills Section */}
       <section id="skills" className="py-16">
-        <Skills />
+        <Skills
+          data={{
+            skills: skillsData as any,
+            additional: additionalData as any,
+          }}
+        />
       </section>
-
-      {/* Projects Section */}
       <section id="projects" className="py-16">
-        <Projects />
+        <Projects projects={projectsData as any} />
       </section>
 
-      {/* Experience Section */}
       <section id="experience" className="py-16">
-        <Experience />
+        <Experience data={experienceData as any} />
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="py-16">
-        <Contact />
+        <Contact data={contactsData as any} />
       </section>
     </main>
   );

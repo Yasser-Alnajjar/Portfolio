@@ -24,10 +24,10 @@ export const ToggleTheme = ({ className }: { className?: string }) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
+          variant="outline"
           size="icon"
           aria-label="Toggle Theme"
-          className={cn(className)}
+          className={cn("", className)}
         >
           {theme === "dark" ? (
             <Sun className="size-4" />

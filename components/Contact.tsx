@@ -4,74 +4,79 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button, Input, Label, Textarea } from "./atoms";
 
-export const Contact = () => {
-  const contactInfo = [
-    {
-      icon: <Mail size={24} />,
-      title: "Email",
-      value: "yasseralnajjar72@gmail.com",
-      link: "mailto:yasseralnajjar72@gmail.com",
-    },
-    {
-      icon: <Phone size={24} />,
-      title: "Phone",
-      value: "+201090179792 | +021121081998",
-      link: "tel:+201090179792",
-    },
-    {
-      icon: <MapPin size={24} />,
-      title: "Location",
-      value: "Maadi, Cairo, Egypt",
-      link: "#",
-    },
-  ];
+type ContactItem = {
+  id: string;
+  type: "contact" | "social";
+  title: string;
+  value: string;
+  link: string;
+};
 
-  const socialLinks = [
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-linkedin-icon lucide-linkedin"
-        >
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-          <rect width="4" height="12" x="2" y="9" />
-          <circle cx="4" cy="4" r="2" />
-        </svg>
-      ),
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/Yasser-Alnajjar",
-    },
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M3 18V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
-          <path d="M8 12h8" />
-          <path d="M12 8h4" />
-          <path d="M12 16h4" />
-        </svg>
-      ),
-      name: "GitHub",
-      url: "https://github.com/yasseralnajjar",
-    },
-  ];
+export const Contact = ({ data }: { data: ContactItem[] }) => {
+  // A helper to pick the right icon based on title or type:
+  const getIcon = (item: ContactItem) => {
+    if (item.type === "contact") {
+      switch (item.title.toLowerCase()) {
+        case "email":
+          return <Mail size={24} />;
+        case "phone":
+          return <Phone size={24} />;
+        case "location":
+          return <MapPin size={24} />;
+        default:
+          return <Mail size={24} />; // fallback icon
+      }
+    } else if (item.type === "social") {
+      // Define inline SVG icons for socials you have
+      if (item.title.toLowerCase() === "linkedin") {
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            viewBox="0 0 24 24"
+            className="lucide lucide-linkedin-icon lucide-linkedin"
+          >
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect width="4" height="12" x="2" y="9" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        );
+      }
+      if (item.title.toLowerCase() === "github") {
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            viewBox="0 0 24 24"
+          >
+            <path d="M3 18V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+            <path d="M8 12h8" />
+            <path d="M12 8h4" />
+            <path d="M12 16h4" />
+          </svg>
+        );
+      }
+      // Fallback for other socials
+      return <Mail size={24} />;
+    }
+    return null;
+  };
+
+  // Separate contacts and socials:
+  const contacts = data.filter((item) => item.type === "contact");
+  const socials = data.filter((item) => item.type === "social");
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -174,7 +179,6 @@ export const Contact = () => {
               </form>
             </div>
           </motion.div>
-
           {/* Contact Information */}
           <motion.div
             className="col-span-12 lg:col-span-5 space-y-4 sm:space-y-6"
@@ -190,9 +194,9 @@ export const Contact = () => {
               </h3>
 
               <div className="space-y-4 sm:space-y-6">
-                {contactInfo.map((info, index) => (
+                {contacts.map((info, index) => (
                   <motion.a
-                    key={info.title}
+                    key={info.id}
                     href={info.link}
                     className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-all duration-300 group"
                     initial={{ opacity: 0, y: 20 }}
@@ -201,7 +205,7 @@ export const Contact = () => {
                     viewport={{ once: true }}
                   >
                     <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                      {info.icon}
+                      {getIcon(info)}
                     </div>
                     <div>
                       <h4 className="font-medium text-foreground text-sm sm:text-base">
@@ -223,10 +227,10 @@ export const Contact = () => {
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {socialLinks.map((social, index) => (
+                {socials.map((social, index) => (
                   <motion.a
-                    key={social.name}
-                    href={social.url}
+                    key={social.id}
+                    href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center space-x-2 p-3 sm:p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-all duration-300 group"
@@ -237,10 +241,10 @@ export const Contact = () => {
                     whileHover={{ scale: 1.05 }}
                   >
                     <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                      {social.icon}
+                      {getIcon(social)}
                     </div>
                     <span className="font-medium text-foreground text-sm sm:text-base">
-                      {social.name}
+                      {social.title}
                     </span>
                   </motion.a>
                 ))}

@@ -5,11 +5,21 @@ import { Download, Mail, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@components";
 
-export const Hero = () => {
+export interface IHero {
+  id: string;
+  greeting: string;
+  name: string;
+  title: string;
+  description: string;
+  cv_url: string;
+  image_url: string; // Supabase storage URL
+}
+
+export const Hero = ({ data }: { data: IHero }) => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-12 gap-4 lg:gap-8 items-center min-h-[80vh] lg:min-h-[90vh]">
-        {/* Left Column - Text Content */}
+        {/* Left Column */}
         <motion.div
           className="col-span-12 lg:col-span-7 space-y-6 sm:space-y-8"
           initial={{ opacity: 0, x: -50 }}
@@ -23,7 +33,7 @@ export const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              Hello, I'm
+              {data.greeting}
             </motion.p>
 
             <motion.h1
@@ -32,7 +42,7 @@ export const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              Yasser Alnajjar
+              {data.name}
             </motion.h1>
 
             <motion.h2
@@ -41,7 +51,7 @@ export const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              Front-End Developer (React.js - Next.js)
+              {data.title}
             </motion.h2>
           </div>
 
@@ -51,10 +61,7 @@ export const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
           >
-            Dynamic Next.js Developer with a proven track record in enhancing
-            user experience and optimizing application performance. Expert in
-            Next.js and JavaScript, I excel in creating reusable components and
-            implementing SEO strategies, driving significant website traffic.
+            {data.description}
           </motion.p>
 
           <motion.div
@@ -63,10 +70,12 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
           >
-            <Button className="w-full sm:w-auto justify-center">
-              <Download size={18} className="sm:w-5 sm:h-5" />
-              <span className="hidden xs:inline">Download CV</span>
-              <span className="xs:hidden">CV</span>
+            <Button asChild className="w-full sm:w-auto justify-center">
+              <a href={data.cv_url} download target="_blank">
+                <Download size={18} className="sm:w-5 sm:h-5" />
+                <span className="hidden xs:inline">Download CV</span>
+                <span className="xs:hidden">CV</span>
+              </a>
             </Button>
 
             <Button className="w-full sm:w-auto justify-center">
@@ -86,13 +95,12 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="relative">
-            {/* Profile Picture */}
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem]">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-yellow-200 rounded-full animate-float"></div>
               <div className="absolute inset-2 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
                 <Image
-                  src="/logo.jpg"
-                  alt="Yasser Alnajjar"
+                  src={data.image_url}
+                  alt={data.name}
                   fill
                   className="object-cover"
                   priority
@@ -100,25 +108,15 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* Floating Elements - Hidden on very small screens */}
+            {/* Floating Elements */}
             <motion.div
               className="absolute -top-4 -right-4 w-6 h-6 sm:w-8 sm:h-8 bg-primary rounded-full hidden sm:block"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             ></motion.div>
             <motion.div
               className="absolute -bottom-4 -left-4 w-4 h-4 sm:w-6 sm:h-6 bg-primary rounded-full hidden sm:block"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.5, 1, 0.5],
-              }}
+              animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
               transition={{
                 duration: 2.5,
                 repeat: Infinity,

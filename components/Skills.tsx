@@ -1,41 +1,19 @@
 "use client";
 
+import { ISkills } from "@types";
 import { motion } from "framer-motion";
 
-export const Skills = () => {
-  const skillCategories = [
-    {
-      category: "Frontend Technologies",
-      skills: [
-        { name: "HTML5", icon: "🌐", level: 95 },
-        { name: "CSS3", icon: "🎨", level: 90 },
-        { name: "JavaScript", icon: "⚡", level: 92 },
-        { name: "TypeScript", icon: "📘", level: 88 },
-        { name: "React.js", icon: "⚛️", level: 95 },
-      ],
-    },
-    {
-      category: "Frameworks & Libraries",
-      skills: [
-        { name: "Next.js", icon: "🚀", level: 90 },
-        { name: "Tailwind CSS", icon: "🎯", level: 88 },
-        { name: "Shadcn/ui", icon: "🧩", level: 85 },
-        { name: "Bootstrap", icon: "📱", level: 80 },
-        { name: "Sass", icon: "💅", level: 85 },
-      ],
-    },
-    {
-      category: "State Management & Tools",
-      skills: [
-        { name: "Redux Toolkit", icon: "🔄", level: 85 },
-        { name: "Zustand", icon: "📦", level: 80 },
-        { name: "React Query", icon: "🔍", level: 82 },
-        { name: "Git & GitHub", icon: "📚", level: 90 },
-        { name: "NPM", icon: "📦", level: 88 },
-      ],
-    },
-  ];
-
+export const Skills = ({
+  data,
+}: {
+  data: {
+    skills: Array<ISkills>;
+    additional: Array<{
+      id: string; // UUID
+      skills: Array<string>; // Array of text
+    }>;
+  };
+}) => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-12 gap-4 lg:gap-8">
@@ -58,7 +36,7 @@ export const Skills = () => {
 
         {/* Skills Grid */}
         <div className="col-span-12 space-y-8 sm:space-y-12">
-          {skillCategories.map((category, categoryIndex) => (
+          {data.skills.map((category, categoryIndex) => (
             <motion.div
               key={category.category}
               className="space-y-4 sm:space-y-6"
@@ -72,7 +50,7 @@ export const Skills = () => {
               </h3>
 
               <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
-                {category.skills.map((skill, skillIndex) => (
+                {category?.skills?.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
                     className="bg-card p-4 sm:p-6 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300 text-center group hover:scale-105"
@@ -120,20 +98,7 @@ export const Skills = () => {
               Additional Skills & Technologies
             </h3>
             <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-              {[
-                "Formik",
-                "React Hook Form",
-                "Yup Validation",
-                "Zod Validation",
-                "I18next",
-                "Next-intl",
-                "Redux Query",
-                "Performance Optimization",
-                "SEO Implementation",
-                "Responsive Design",
-                "Component Architecture",
-                "API Integration",
-              ].map((skill, index) => (
+              {data.additional[0].skills.map((skill, index) => (
                 <motion.div
                   key={skill}
                   className="flex items-center space-x-2 text-muted-foreground text-sm sm:text-base"

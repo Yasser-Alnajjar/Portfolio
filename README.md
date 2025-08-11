@@ -118,9 +118,9 @@ Update the `skillCategories` array in `components/Skills.tsx`:
 ```typescript
 const skillCategories = [
   {
-    category: 'Design Tools',
+    category: "Design Tools",
     skills: [
-      { name: 'Adobe Photoshop', icon: '🎨', level: 95 },
+      { name: "Adobe Photoshop", icon: "🎨", level: 95 },
       // Add your skills here
     ],
   },
@@ -134,15 +134,15 @@ Edit the `experiences` array in `components/Experience.tsx`:
 ```typescript
 const experiences = [
   {
-    title: 'Your Job Title',
-    company: 'Company Name',
-    location: 'City, Country',
-    period: 'Start Date - End Date',
+    title: "Your Job Title",
+    company: "Company Name",
+    location: "City, Country",
+    period: "Start Date - End Date",
     description: [
-      'Your job description...',
+      "Your job description...",
       // Add more descriptions
     ],
-    tech: ['Skill 1', 'Skill 2', 'Skill 3'],
+    tech: ["Skill 1", "Skill 2", "Skill 3"],
   },
 ];
 ```
@@ -155,9 +155,9 @@ Update the contact details in `components/Contact.tsx`:
 const contactInfo = [
   {
     icon: <Mail size={24} />,
-    title: 'Email',
-    value: 'your.email@example.com',
-    link: 'mailto:your.email@example.com',
+    title: "Email",
+    value: "your.email@example.com",
+    link: "mailto:your.email@example.com",
   },
   // Add more contact methods
 ];
