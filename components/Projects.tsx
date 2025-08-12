@@ -3,8 +3,12 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { IProject } from "@types";
+import { Button } from "./atoms";
+import Image from "next/image";
 
 export const Projects = ({ projects }: { projects: Array<IProject> }) => {
+  console.log(projects);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-12 gap-4 lg:gap-8">
@@ -44,19 +48,30 @@ export const Projects = ({ projects }: { projects: Array<IProject> }) => {
                   {/* Project Image */}
                   <div className="col-span-12 lg:col-span-6">
                     <div className="relative group">
-                      <div className="aspect-video bg-gradient-to-br from-primary/20 to-yellow-200/20 rounded-xl border border-border overflow-hidden">
-                        <div className="w-full h-full flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="text-6xl mb-4">🖼️</div>
-                            <p className="text-muted-foreground">
-                              Project Screenshot
-                            </p>
-                            <p className="text-sm text-muted-foreground">
-                              400x250px
-                            </p>
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          width={400}
+                          height={250}
+                          alt={project.title || "Project"}
+                          className="aspect-video w-full rounded-lg mb-4"
+                        />
+                      ) : (
+                        <div className="aspect-video bg-gradient-to-br from-primary/20 to-yellow-200/20 rounded-xl border border-border overflow-hidden">
+                          <div className="w-full h-full flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="text-6xl mb-4">🖼️</div>
+                              <p className="text-muted-foreground">
+                                Project Screenshot
+                              </p>
+                              <p className="text-sm text-muted-foreground">
+                                400x250px
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      )}
+
                       <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
                     </div>
                   </div>
@@ -88,18 +103,15 @@ export const Projects = ({ projects }: { projects: Array<IProject> }) => {
                         ))}
                       </div>
                     </div>
-
                     {/* Project Links */}
-                    {project.liveUrl && (
+                    {project.liveurl && (
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                        >
-                          <ExternalLink size={20} />
-                          Live Demo
-                        </a>
+                        <Button asChild>
+                          <a href={project.liveurl} target="_blank">
+                            <ExternalLink size={20} />
+                            Live Demo
+                          </a>
+                        </Button>
                       </div>
                     )}
                   </div>
@@ -133,15 +145,24 @@ export const Projects = ({ projects }: { projects: Array<IProject> }) => {
                     viewport={{ once: true }}
                   >
                     {/* Project Thumbnail */}
-                    <div className="aspect-video bg-gradient-to-br from-primary/10 to-yellow-200/10 rounded-lg mb-4 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-4xl mb-2">📱</div>
-                        <p className="text-sm text-muted-foreground">
-                          Thumbnail
-                        </p>
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        width={300}
+                        height={300}
+                        alt={project.title || "Project"}
+                        className="aspect-video w-full rounded-lg mb-4"
+                      />
+                    ) : (
+                      <div className="aspect-video bg-gradient-to-br from-primary/10 to-yellow-200/10 rounded-lg mb-4 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-4xl mb-2">📱</div>
+                          <p className="text-sm text-muted-foreground">
+                            Thumbnail
+                          </p>
+                        </div>
                       </div>
-                    </div>
-
+                    )}
                     {/* Project Info */}
                     <h4 className="font-semibold text-foreground mb-2">
                       {project.title}
@@ -168,34 +189,19 @@ export const Projects = ({ projects }: { projects: Array<IProject> }) => {
                     </div>
 
                     {/* Project Links */}
-                    {project.liveUrl && (
+                    {project.liveurl && (
                       <div className="flex gap-2">
-                        <a
-                          href={project.liveUrl}
-                          className="flex-1 bg-primary text-primary-foreground text-center text-sm py-2 rounded-lg hover:bg-primary/90 transition-all duration-300"
-                        >
-                          Demo
-                        </a>
+                        <Button asChild className="flex-1" size="md">
+                          <a href={project.liveurl} target="_blank">
+                            Live Demo
+                          </a>
+                        </Button>
                       </div>
                     )}
                   </motion.div>
                 ))}
           </div>
         </motion.div>
-
-        {/* View More Button */}
-        {/* <motion.div
-          className="col-span-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <button className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
-            View All Projects
-            <ArrowRight size={20} />
-          </button>
-        </motion.div> */}
       </div>
     </div>
   );
