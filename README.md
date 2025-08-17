@@ -46,6 +46,23 @@ Mohamed-protfolio/
 └── README.md               # This file
 ```
 
+## 📚 Documentation
+
+This project includes comprehensive documentation for all APIs, components, and functions:
+
+- **[API Documentation](./API_DOCUMENTATION.md)** - Complete guide to all public APIs, components, hooks, types, and utilities
+- **[Component Catalog](./COMPONENT_CATALOG.md)** - Detailed catalog of all UI components with props and usage examples  
+- **[Quick Reference](./QUICK_REFERENCE.md)** - Concise reference guide for quick development
+
+### Documentation Highlights
+
+- **50+ UI Components** with full TypeScript support
+- **Custom React Hooks** for common functionality
+- **RESTful API endpoints** for data management
+- **TypeScript interfaces** for all data structures
+- **Usage examples** and best practices
+- **Responsive design patterns**
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
