@@ -47,7 +47,10 @@ export default async function Page() {
       </section>
 
       <section id="experience" className="py-16">
-        <Experience data={experienceData as any} />
+        <Experience
+          data={experienceData as any}
+          cv_url={heroData?.[0].cv_url}
+        />
       </section>
 
       <section id="contact" className="py-16">

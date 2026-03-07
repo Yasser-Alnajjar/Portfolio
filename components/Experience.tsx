@@ -5,7 +5,13 @@ import { Calendar, MapPin, Building } from "lucide-react";
 import { Badge, Button } from "./atoms";
 import { IExperience } from "@types";
 
-export const Experience = ({ data }: { data: Array<IExperience> }) => {
+export const Experience = ({
+  data,
+  cv_url,
+}: {
+  data: Array<IExperience>;
+  cv_url: string;
+}) => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-12 gap-4 lg:gap-8">
@@ -141,11 +147,7 @@ export const Experience = ({ data }: { data: Array<IExperience> }) => {
             </p>
 
             <Button asChild className="mx-auto w-fit">
-              <a
-                href="https://njwagbcbljfyqapntvcf.supabase.co/storage/v1/object/public/cv/Yasser-Alnajjar.pdf"
-                download
-                target="_blank"
-              >
+              <a href={cv_url} download target="_blank">
                 Download CV
               </a>
             </Button>
