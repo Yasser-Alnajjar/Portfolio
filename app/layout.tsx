@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google";
-import { ThemeProvider } from "@components";
+import { GoToTop, ThemeProvider } from "@components";
 
 export const metadata: Metadata = {
   title: "Yasser Alnajjar - Front-End Developer (React.js - Next.js)",
@@ -31,6 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <GoToTop />
         </ThemeProvider>
       </body>
     </html>

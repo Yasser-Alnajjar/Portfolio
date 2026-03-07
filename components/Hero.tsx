@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Download, Mail, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@components";
+import { scrollToSection } from "@lib/utils";
 
 export interface IHero {
   id: string;
@@ -78,7 +79,12 @@ export const Hero = ({ data }: { data: IHero }) => {
               </a>
             </Button>
 
-            <Button className="w-full sm:w-auto justify-center">
+            <Button
+              className="w-full sm:w-auto justify-center"
+              onClick={() => {
+                scrollToSection("contact", 50);
+              }}
+            >
               <Mail size={18} className="sm:w-5 sm:h-5" />
               <span className="hidden xs:inline">Get In Touch</span>
               <span className="xs:hidden">Contact</span>
