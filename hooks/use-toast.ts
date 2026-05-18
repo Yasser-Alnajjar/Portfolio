@@ -1,23 +1,16 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { toast as sonnerToast, ExternalToast } from "sonner";
-// --color-info: #f6fcfd;
-// --color-info-foreground: #55cbd3;
-// --color-success: #f4fcf7;
-// --color-success-foreground: #22c55e;
-// --color-warning: #fefbf2;
-// --color-warning-foreground: #eab308;
-// --color-error: #faf3f3;
-// --color-error-foreground: #ef4444;
+
 const toastVariants = cva("", {
   variants: {
     variant: {
       success:
-        "!border-success 	!bg-green-50 dark:!bg-dark-success !text-success [&_svg]:!text-success",
+        "!border-success 	!bg-green-50 dark:!bg-dark-success  !text-success group-[.toast]:!text-success [&_svg]:!text-success",
       error:
-        "!border-error !bg-red-50 dark:!bg-dark-error !text-error [&_svg]:!text-error",
-      info: "!border-info !bg-blue-50 dark:!bg-dark-info !text-info [&_svg]:!text-info",
+        "!border-error !bg-red-50 dark:!bg-dark-error  !text-error group-[.toast]:!text-error [&_svg]:!text-error",
+      info: "!border-info !bg-blue-50 dark:!bg-dark-info  !text-info group-[.toast]:!text-info [&_svg]:!text-info",
       warning:
-        "!border-warning !bg-yellow-50 dark:!bg-dark-warning !text-warning [&_svg]:!text-warning",
+        "!border-warning !bg-yellow-50 dark:!bg-dark-warning  !text-warning group-[.toast]:!text-warning [&_svg]:!text-warning",
     },
   },
   defaultVariants: {

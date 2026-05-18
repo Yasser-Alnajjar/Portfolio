@@ -7,8 +7,6 @@ import { Button } from "./atoms";
 import Image from "next/image";
 
 export const Projects = ({ projects }: { projects: Array<IProject> }) => {
-  console.log(projects);
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-12 gap-4 lg:gap-8">

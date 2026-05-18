@@ -1,8 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+import { sendContactEmail } from "@lib/smtp";
+
 import { Button, Input, Label, Textarea } from "./atoms";
+import { useToast } from "@hooks";
 
 type ContactItem = {
   id: string;
@@ -12,76 +18,65 @@ type ContactItem = {
   link: string;
 };
 
+const validationSchema = Yup.object({
+  firstName: Yup.string().required("First name is required"),
+  lastName: Yup.string().required("Last name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  subject: Yup.string().required("Subject is required"),
+  message: Yup.string()
+    .min(10, "Message is too short")
+    .required("Message is required"),
+});
+
 export const Contact = ({ data }: { data: ContactItem[] }) => {
-  // A helper to pick the right icon based on title or type:
+  const { toast } = useToast();
   const getIcon = (item: ContactItem) => {
     if (item.type === "contact") {
       switch (item.title.toLowerCase()) {
         case "email":
           return <Mail size={24} />;
+
         case "phone":
           return <Phone size={24} />;
+
         case "location":
           return <MapPin size={24} />;
+
         default:
-          return <Mail size={24} />; // fallback icon
+          return <Mail size={24} />;
       }
-    } else if (item.type === "social") {
-      // Define inline SVG icons for socials you have
-      if (item.title.toLowerCase() === "linkedin") {
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-            className="lucide lucide-linkedin-icon lucide-linkedin"
-          >
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-            <rect width="4" height="12" x="2" y="9" />
-            <circle cx="4" cy="4" r="2" />
-          </svg>
-        );
-      }
-      if (item.title.toLowerCase() === "github") {
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-          >
-            <path d="M3 18V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
-            <path d="M8 12h8" />
-            <path d="M12 8h4" />
-            <path d="M12 16h4" />
-          </svg>
-        );
-      }
-      // Fallback for other socials
-      return <Mail size={24} />;
     }
-    return null;
+
+    if (item.title.toLowerCase() === "linkedin") {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          viewBox="0 0 24 24"
+        >
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect width="4" height="12" x="2" y="9" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+      );
+    }
+
+    return <Mail size={24} />;
   };
 
-  // Separate contacts and socials:
   const contacts = data.filter((item) => item.type === "contact");
+
   const socials = data.filter((item) => item.type === "social");
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8" id="contact">
       <div className="grid grid-cols-12 gap-4 lg:gap-8">
-        {/* Section Header */}
         <motion.div
           className="col-span-12 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -89,18 +84,17 @@ export const Contact = ({ data }: { data: ContactItem[] }) => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
             Get In Touch
           </h2>
-          <p className="text-muted-foreground text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mt-4 sm:mt-6">
-            I'm always open to discussing new opportunities, interesting
-            projects, or just having a chat about front-end development
+
+          <p className="text-muted-foreground text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mt-4">
+            I&apos;m always open to discussing new opportunities and projects.
           </p>
         </motion.div>
 
-        {/* Main Content */}
         <div className="col-span-12 grid grid-cols-12 gap-4 lg:gap-8">
-          {/* Contact Form */}
+          {/* FORM */}
           <motion.div
             className="col-span-12 lg:col-span-7"
             initial={{ opacity: 0, x: -50 }}
@@ -108,145 +102,216 @@ export const Contact = ({ data }: { data: ContactItem[] }) => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary mb-4 sm:mb-6">
+            <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border shadow-lg">
+              <h3 className="text-2xl font-semibold text-primary mb-6">
                 Send Me a Message
               </h3>
 
-              <form className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <div className="flex flex-col gap-1">
-                    <Label htmlFor="firstName" className="text-sm sm:text-base">
-                      First Name
-                    </Label>
-                    <Input
-                      id="firstName"
-                      placeholder="Your first name"
-                      className="text-sm sm:text-base"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <Label htmlFor="lastName" className="text-sm sm:text-base">
-                      Last Name
-                    </Label>
-                    <Input
-                      id="lastName"
-                      placeholder="Your last name"
-                      className="text-sm sm:text-base"
-                    />
-                  </div>
-                </div>
+              <Formik
+                initialValues={{
+                  firstName: "",
+                  lastName: "",
+                  email: "",
+                  subject: "",
+                  message: "",
+                }}
+                validationSchema={validationSchema}
+                onSubmit={async (values, { resetForm, setSubmitting }) => {
+                  try {
+                    const response = await sendContactEmail({
+                      email: values.email,
+                      message: values.message,
+                      subject: values.subject,
+                      firstName: values.firstName,
+                      lastName: values.lastName,
+                    });
+                    console.log("response", response);
 
-                <div className="flex flex-col gap-1">
-                  <Label htmlFor="email" className="text-sm sm:text-base">
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    className="text-sm sm:text-base"
-                  />
-                </div>
+                    if (response.success) {
+                      resetForm();
+                      toast({
+                        title: "Success",
+                        description: response.message,
+                        variant: "success",
+                      });
+                    } else {
+                      toast({
+                        title: "Error",
+                        description: response.message,
+                        variant: "error",
+                      });
+                    }
+                  } catch (error) {
+                    toast({
+                      title: "Error",
+                      description: String(error),
+                      variant: "error",
+                    });
+                    console.error(error);
+                  } finally {
+                    setSubmitting(false);
+                  }
+                }}
+              >
+                {({ isSubmitting }) => (
+                  <Form className="space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-2">
+                        <Label htmlFor="firstName">First Name</Label>
 
-                <div className="flex flex-col gap-1">
-                  <Label htmlFor="subject" className="text-sm sm:text-base">
-                    Subject
-                  </Label>
-                  <Input
-                    id="subject"
-                    placeholder="What's this about?"
-                    className="text-sm sm:text-base"
-                  />
-                </div>
+                        <Field
+                          as={Input}
+                          id="firstName"
+                          name="firstName"
+                          placeholder="First name"
+                        />
 
-                <div className="flex flex-col gap-1">
-                  <Label htmlFor="message" className="text-sm sm:text-base">
-                    Message
-                  </Label>
-                  <Textarea
-                    id="message"
-                    placeholder="Tell me about your project..."
-                    rows={5}
-                    className="text-sm sm:text-base resize-none"
-                  />
-                </div>
+                        <ErrorMessage
+                          name="firstName"
+                          component="p"
+                          className="text-sm text-red-500"
+                        />
+                      </div>
 
-                <Button className="w-full sm:w-auto">
-                  <Send size={18} className="sm:w-5 sm:h-5" />
-                  Send Message
-                </Button>
-              </form>
+                      <div className="flex flex-col gap-2">
+                        <Label htmlFor="lastName">Last Name</Label>
+
+                        <Field
+                          as={Input}
+                          id="lastName"
+                          name="lastName"
+                          placeholder="Last name"
+                        />
+
+                        <ErrorMessage
+                          name="lastName"
+                          component="p"
+                          className="text-sm text-red-500"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor="email">Email</Label>
+
+                      <Field
+                        as={Input}
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="you@example.com"
+                      />
+
+                      <ErrorMessage
+                        name="email"
+                        component="p"
+                        className="text-sm text-red-500"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor="subject">Subject</Label>
+
+                      <Field
+                        as={Input}
+                        id="subject"
+                        name="subject"
+                        placeholder="Subject"
+                      />
+
+                      <ErrorMessage
+                        name="subject"
+                        component="p"
+                        className="text-sm text-red-500"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor="message">Message</Label>
+
+                      <Field
+                        as={Textarea}
+                        id="message"
+                        name="message"
+                        rows={6}
+                        placeholder="Tell me about your project..."
+                        className="resize-none"
+                      />
+
+                      <ErrorMessage
+                        name="message"
+                        component="p"
+                        className="text-sm text-red-500"
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full sm:w-auto"
+                    >
+                      <Send size={18} />
+
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                    </Button>
+                  </Form>
+                )}
+              </Formik>
             </div>
           </motion.div>
-          {/* Contact Information */}
+
+          {/* INFO */}
           <motion.div
-            className="col-span-12 lg:col-span-5 space-y-4 sm:space-y-6"
+            className="col-span-12 lg:col-span-5 space-y-6"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Contact Details */}
-            <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary mb-4 sm:mb-6">
+            <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border shadow-lg">
+              <h3 className="text-2xl font-semibold text-primary mb-6">
                 Contact Information
               </h3>
 
-              <div className="space-y-4 sm:space-y-6">
-                {contacts.map((info, index) => (
-                  <motion.a
+              <div className="space-y-4">
+                {contacts.map((info) => (
+                  <a
                     key={info.id}
                     href={info.link}
-                    className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-all duration-300 group"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    className="flex items-center gap-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-all"
                   >
-                    <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                      {getIcon(info)}
-                    </div>
+                    <div className="text-primary">{getIcon(info)}</div>
+
                     <div>
-                      <h4 className="font-medium text-foreground text-sm sm:text-base">
-                        {info.title}
-                      </h4>
-                      <p className="text-muted-foreground text-xs sm:text-sm">
+                      <h4 className="font-medium">{info.title}</h4>
+
+                      <p className="text-sm text-muted-foreground">
                         {info.value}
                       </p>
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary mb-4 sm:mb-6">
+            <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border shadow-lg">
+              <h3 className="text-2xl font-semibold text-primary mb-6">
                 Follow Me
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {socials.map((social, index) => (
-                  <motion.a
+              <div className="grid grid-cols-2 gap-4">
+                {socials.map((social) => (
+                  <a
                     key={social.id}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center space-x-2 p-3 sm:p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-all duration-300 group"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center justify-center gap-2 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-all"
                   >
-                    <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                      {getIcon(social)}
-                    </div>
-                    <span className="font-medium text-foreground text-sm sm:text-base">
-                      {social.title}
-                    </span>
-                  </motion.a>
+                    <div className="text-primary">{getIcon(social)}</div>
+
+                    <span className="font-medium">{social.title}</span>
+                  </a>
                 ))}
               </div>
             </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google";
-import { GoToTop, ThemeProvider } from "@components";
+import { GoToTop, ThemeProvider, Toaster } from "@components";
 
 export const metadata: Metadata = {
   title: "Yasser Alnajjar - Front-End Developer (React.js - Next.js)",
@@ -30,6 +30,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster richColors />
           {children}
           <GoToTop />
         </ThemeProvider>
