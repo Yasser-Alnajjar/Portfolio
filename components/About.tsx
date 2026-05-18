@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Code, Palette, Zap, Users } from "lucide-react";
+import { JSX } from "react";
 
 const ICONS: Record<string, JSX.Element> = {
   Code: <Code size={24} />,
@@ -22,7 +23,7 @@ export interface IAboutMe {
 
 export const About = ({ data }: { data: Array<IAboutMe> }) => {
   const header = Object.fromEntries(
-    data.filter((d) => d.type === "header").map((d) => [d.section, d.content])
+    data.filter((d) => d.type === "header").map((d) => [d.section, d.content]),
   );
   const whoIAm = data
     .filter((d) => d.type === "bio" && d.section === "whoIAm")
