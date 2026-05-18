@@ -82,7 +82,7 @@ export const Hero = ({ data }: { data: IHero }) => {
             <Button
               className="w-full sm:w-auto justify-center"
               onClick={() => {
-                scrollToSection("contact", 50);
+                scrollToSection("#contact");
               }}
             >
               <Mail size={18} className="sm:w-5 sm:h-5" />
