@@ -124,6 +124,7 @@ export const Contact = ({
                     firstName: values.firstName,
                     lastName: values.lastName,
                   });
+
                   if (response.success) {
                     resetForm();
                     toast({

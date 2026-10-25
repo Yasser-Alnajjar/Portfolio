@@ -103,7 +103,7 @@ export const Projects = ({ projects }: { projects: Array<IProject> }) => {
                 project={project}
                 sizes="(min-width: 1024px) 680px, 100vw"
                 className={cn(
-                  "col-span-12 aspect-[16/10] lg:col-span-7",
+                  "col-span-12 aspect-16/10 lg:col-span-7",
                   index % 2 === 1 && "lg:order-last",
                 )}
               />
@@ -148,7 +148,7 @@ export const Projects = ({ projects }: { projects: Array<IProject> }) => {
               <ProjectImage
                 project={project}
                 sizes="(min-width: 768px) 560px, 100vw"
-                className="mb-7 aspect-[16/9]"
+                className="mb-7 aspect-video"
               />
               <p className="eyebrow mb-3">
                 {String(spotlight.length + index + 1).padStart(2, "0")} /
@@ -195,12 +195,12 @@ export const Projects = ({ projects }: { projects: Array<IProject> }) => {
                       target: "_blank",
                       rel: "noopener noreferrer",
                     })}
-                    className="group flex gap-5 border-b border-border py-7"
+                    className="group flex flex-col sm:flex-row  gap-5 border-b border-border py-7"
                   >
                     <ProjectImage
                       project={project}
-                      sizes="160px"
-                      className="aspect-[4/3] w-28 shrink-0 sm:w-36"
+                      sizes="(min-width: 768px) 560px, 100vw"
+                      className="aspect-video sm:aspect-4/3 w-full sm:w-28 shrink-0 self-start"
                     />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-3">
