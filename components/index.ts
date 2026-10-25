@@ -7,3 +7,4 @@ export * from "./Skills";
 export * from "./Hero";
 export * from "./Projects";
 export * from "./loading";
+export * from "./Section";

@@ -1,7 +1,7 @@
 "use client";
 
 import { ISkills } from "@types";
-import { motion } from "framer-motion";
+import { Container, Reveal } from "./Section";
 
 export const Skills = ({
   data,
@@ -14,107 +14,50 @@ export const Skills = ({
     }>;
   };
 }) => {
+  const columns = [
+    ...data.skills.map((c) => ({
+      title: c.category ?? "",
+      items: c.skills?.map((s) => s.name ?? "").filter(Boolean) ?? [],
+    })),
+    ...(data.additional?.[0]?.skills?.length
+      ? [{ title: "Practices & Tooling", items: data.additional[0].skills }]
+      : []),
+  ];
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-12 gap-4 lg:gap-8">
-        {/* Section Header */}
-        <motion.div
-          className="col-span-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-            Technical Skills
+    <Container>
+      <div className="grid grid-cols-12 gap-y-12 lg:gap-x-10">
+        <Reveal className="col-span-12 lg:col-span-4">
+          <p className="eyebrow mb-5">Technical Expertise</p>
+          <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-balance sm:text-5xl">
+            The tools behind the work.
           </h2>
-          <p className="text-muted-foreground text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mt-4 sm:mt-6">
-            My technical expertise spans across modern Front-End Development
-            technologies and tools
+          <p className="mt-6 max-w-sm leading-relaxed text-muted-foreground">
+            My technical expertise spans modern front-end technologies, from
+            component architecture to state and data.
           </p>
-        </motion.div>
+        </Reveal>
 
-        {/* Skills Grid */}
-        <div className="col-span-12 space-y-8 sm:space-y-12">
-          {data.skills.map((category, categoryIndex) => (
-            <motion.div
-              key={category.category}
-              className="space-y-4 sm:space-y-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary text-center">
-                {category.category}
+        <div className="col-span-12 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4 lg:col-span-8">
+          {columns.map((column, index) => (
+            <Reveal key={column.title} delay={index * 0.06}>
+              <h3 className="mb-5 border-b border-border pb-3 font-mono text-[11px] uppercase leading-4 tracking-[0.14em] text-subtle-foreground">
+                {column.title}
               </h3>
-
-              <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
-                {category?.skills?.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    className="bg-card p-4 sm:p-6 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300 text-center group hover:scale-105"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: skillIndex * 0.1 }}
-                    viewport={{ once: true }}
+              <ul className="space-y-2.5">
+                {column.items.map((item) => (
+                  <li
+                    key={item}
+                    className="text-[15px] leading-snug text-foreground/90"
                   >
-                    {/* Icon with glow + float */}
-                    <motion.div
-                      className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-primary"
-                      animate={{
-                        y: [0, -5, 0], // floating effect
-                        textShadow: [
-                          "0 0 0px #d6c0a3",
-                          "0 0 8px #d6c0a3",
-                          "0 0 0px #d6c0a3",
-                        ],
-                      }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    >
-                      {skill.icon}
-                    </motion.div>
-
-                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">
-                      {skill.name}
-                    </h4>
-                  </motion.div>
+                    {item}
+                  </li>
                 ))}
-              </div>
-            </motion.div>
+              </ul>
+            </Reveal>
           ))}
         </div>
-
-        {/* Additional Skills */}
-        <motion.div
-          className="col-span-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary mb-4 sm:mb-6">
-              Additional Skills & Technologies
-            </h3>
-            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-              {data.additional[0].skills.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  className="flex items-center space-x-2 text-muted-foreground text-sm sm:text-base"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <span className="truncate">{skill}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
-    </div>
+    </Container>
   );
 };

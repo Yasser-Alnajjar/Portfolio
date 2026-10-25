@@ -1,206 +1,234 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
-import { IProject } from "@types";
-import { Button } from "./atoms";
+import { ArrowUpRight, ImageIcon } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
+import { IProject } from "@types";
+import { cn } from "@lib/utils";
+import {
+  Container,
+  Reveal,
+  SectionHeader,
+  TechList,
+  hostname,
+} from "./Section";
+
+const ProjectImage = ({
+  project,
+  className,
+  sizes,
+}: {
+  project: IProject;
+  className?: string;
+  sizes: string;
+}) => {
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-xl border border-border bg-card",
+        className,
+      )}
+    >
+      {project.image && !failed ? (
+        <Image
+          src={project.image}
+          alt={project.title || "Project"}
+          fill
+          sizes={sizes}
+          onError={() => setFailed(true)}
+          className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        />
+      ) : (
+        <div className="hatch flex size-full flex-col items-center justify-center gap-2 p-3 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-subtle-foreground">
+          <ImageIcon size={14} />
+          <span className="line-clamp-2">{project.title}</span>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ProjectLink = ({ url, label }: { url?: string | null; label: string }) =>
+  url ? (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group/link inline-flex items-center gap-2 text-sm text-foreground"
+    >
+      <span className="border-b border-foreground/30 pb-0.5 transition-colors group-hover/link:border-highlight">
+        {label}
+      </span>
+      <span className="font-mono text-[11px] text-subtle-foreground">
+        {hostname(url)}
+      </span>
+      <ArrowUpRight
+        size={14}
+        className="text-muted-foreground transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+      />
+    </a>
+  ) : null;
+
+const paragraphs = (text?: string) =>
+  (text ?? "")
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
 
 export const Projects = ({ projects }: { projects: Array<IProject> }) => {
+  const featured = (projects ?? []).filter((p) => p.featured);
+  const [spotlight, secondary] = [featured.slice(0, 2), featured.slice(2)];
+  const others = (projects ?? []).filter((p) => !p.featured);
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-12 gap-4 lg:gap-8">
-        <motion.div
-          className="col-span-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-            Featured Projects
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
-            A showcase of my recent work, demonstrating my skills in frontend
-            development and problem-solving
-          </p>
-        </motion.div>
+    <Container>
+      <SectionHeader
+        eyebrow="Selected Work"
+        title="Products I've helped build."
+        description="A selection of production applications, independent products, and frontend engineering work."
+      />
 
-        {/* Featured Projects */}
-        <div className="col-span-12 space-y-12">
-          {projects &&
-            projects.length &&
-            projects
-              ?.filter((p) => p.featured)
-              ?.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  className={`grid grid-cols-12 items-center gap-4 lg:gap-8 ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  }`}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  {/* Project Image */}
-                  <div className="col-span-12 lg:col-span-6">
-                    <div className="relative group">
-                      {project.image ? (
-                        <Image
-                          src={project.image}
-                          width={400}
-                          height={250}
-                          alt={project.title || "Project"}
-                          className="aspect-video w-full rounded-lg mb-4"
-                        />
-                      ) : (
-                        <div className="aspect-video bg-gradient-to-br from-primary/20 to-yellow-200/20 rounded-xl border border-border overflow-hidden">
-                          <div className="w-full h-full flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="text-6xl mb-4">🖼️</div>
-                              <p className="text-muted-foreground">
-                                Project Screenshot
-                              </p>
-                              <p className="text-sm text-muted-foreground">
-                                400x250px
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
+      {/* Spotlight projects — alternating image / copy rows */}
+      <div className="mt-16 space-y-20 lg:mt-20 lg:space-y-28">
+        {spotlight.map((project, index) => {
+          const [lead, ...rest] = paragraphs(project.description);
+          return (
+            <Reveal
+              key={project.title}
+              className="group grid grid-cols-12 items-center gap-y-8 lg:gap-x-14"
+            >
+              <ProjectImage
+                project={project}
+                sizes="(min-width: 1024px) 680px, 100vw"
+                className={cn(
+                  "col-span-12 aspect-[16/10] lg:col-span-7",
+                  index % 2 === 1 && "lg:order-last",
+                )}
+              />
+              <div className="col-span-12 lg:col-span-5">
+                <p className="eyebrow mb-4">
+                  {String(index + 1).padStart(2, "0")} / Featured project
+                </p>
+                <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">
+                  {project.title}
+                </h3>
+                <p className="mt-5 leading-relaxed text-muted-foreground">
+                  {lead}
+                </p>
+                {rest.map((p) => (
+                  <p
+                    key={p}
+                    className={cn(
+                      "mt-4 leading-relaxed",
+                      p.length < 60
+                        ? "font-medium text-highlight"
+                        : "text-muted-foreground",
+                    )}
+                  >
+                    {p}
+                  </p>
+                ))}
+                <TechList items={project.tech} className="mt-7" />
+                <div className="mt-7">
+                  <ProjectLink url={project.liveurl} label="Visit project" />
+                </div>
+              </div>
+            </Reveal>
+          );
+        })}
+      </div>
 
-                      <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-                    </div>
-                  </div>
+      {/* Remaining featured projects */}
+      {secondary.length > 0 && (
+        <div className="mt-20 grid grid-cols-1 gap-x-12 gap-y-14 border-t border-border pt-16 md:grid-cols-2 lg:mt-28">
+          {secondary.map((project, index) => (
+            <Reveal key={project.title} delay={index * 0.08} className="group">
+              <ProjectImage
+                project={project}
+                sizes="(min-width: 768px) 560px, 100vw"
+                className="mb-7 aspect-[16/9]"
+              />
+              <p className="eyebrow mb-3">
+                {String(spotlight.length + index + 1).padStart(2, "0")} /
+                Featured project
+              </p>
+              <h3 className="font-display text-2xl font-semibold tracking-[-0.02em]">
+                {project.title}
+              </h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                {project.description}
+              </p>
+              <TechList items={project.tech} className="mt-5" />
+              <div className="mt-6">
+                <ProjectLink url={project.liveurl} label="View project" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      )}
 
-                  {/* Project Content */}
-                  <div className="col-span-12 lg:col-span-6 space-y-6">
-                    <div>
-                      <h3 className="text-2xl lg:text-3xl font-semibold text-primary">
-                        {project.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+      {/* Additional client & team work */}
+      {others.length > 0 && (
+        <div className="mt-24 lg:mt-32">
+          <Reveal className="mb-10 flex items-end justify-between gap-6 border-b border-border pb-6">
+            <div>
+              <p className="eyebrow mb-3">Additional projects</p>
+              <h3 className="font-display text-2xl font-semibold tracking-[-0.02em]">
+                Client and team work
+              </h3>
+            </div>
+            <span className="font-mono text-xs text-subtle-foreground">
+              {String(others.length).padStart(2, "0")} projects
+            </span>
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
+            {others.map((project, index) => {
+              const Wrapper = project.liveurl ? "a" : "div";
+              return (
+                <Reveal key={project.title} delay={(index % 2) * 0.06}>
+                  <Wrapper
+                    {...(project.liveurl && {
+                      href: project.liveurl,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                    className="group flex gap-5 border-b border-border py-7"
+                  >
+                    <ProjectImage
+                      project={project}
+                      sizes="160px"
+                      className="aspect-[4/3] w-28 shrink-0 sm:w-36"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-start justify-between gap-3">
+                        <h4 className="font-display text-lg font-semibold leading-snug tracking-[-0.01em]">
+                          {project.title}
+                        </h4>
+                        {project.liveurl && (
+                          <ArrowUpRight
+                            size={16}
+                            className="mt-1 shrink-0 text-subtle-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-highlight"
+                          />
+                        )}
+                      </div>
+                      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
                         {project.description}
                       </p>
-                    </div>
-
-                    {/* Tech Stack */}
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-3">
-                        Tech Stack
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project?.tech?.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 bg-secondary border border-border rounded-full text-sm text-muted-foreground"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    {/* Project Links */}
-                    {project.liveurl && (
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Button asChild>
-                          <a href={project.liveurl} target="_blank">
-                            <ExternalLink size={20} />
-                            Live Demo
-                          </a>
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-        </div>
-
-        {/* Other Projects Grid */}
-        <motion.div
-          className="col-span-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl lg:text-3xl font-semibold text-primary text-center mb-8">
-            Other Projects
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects &&
-              projects.length &&
-              projects
-                ?.filter((p) => !p.featured)
-                ?.map((project, index) => (
-                  <motion.div
-                    key={project.title}
-                    className="bg-card p-6 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-105"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    {/* Project Thumbnail */}
-                    {project.image ? (
-                      <Image
-                        src={project.image}
-                        width={300}
-                        height={300}
-                        alt={project.title || "Project"}
-                        className="aspect-video w-full rounded-lg mb-4"
+                      <TechList
+                        items={project.tech?.slice(0, 3)}
+                        className="mt-4"
                       />
-                    ) : (
-                      <div className="aspect-video bg-gradient-to-br from-primary/10 to-yellow-200/10 rounded-lg mb-4 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="text-4xl mb-2">📱</div>
-                          <p className="text-sm text-muted-foreground">
-                            Thumbnail
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                    {/* Project Info */}
-                    <h4 className="font-semibold text-foreground mb-2">
-                      {project.title}
-                    </h4>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                      {project.description}
-                    </p>
-
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {project?.tech?.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 bg-secondary rounded text-xs text-muted-foreground"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project?.tech && project?.tech?.length > 3 && (
-                        <span className="px-2 py-1 bg-secondary rounded text-xs text-muted-foreground">
-                          +{project?.tech?.length - 3}
-                        </span>
-                      )}
                     </div>
-
-                    {/* Project Links */}
-                    {project.liveurl && (
-                      <div className="flex gap-2">
-                        <Button asChild className="flex-1" size="md">
-                          <a href={project.liveurl} target="_blank">
-                            Live Demo
-                          </a>
-                        </Button>
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
+                  </Wrapper>
+                </Reveal>
+              );
+            })}
           </div>
-        </motion.div>
-      </div>
-    </div>
+        </div>
+      )}
+    </Container>
   );
 };

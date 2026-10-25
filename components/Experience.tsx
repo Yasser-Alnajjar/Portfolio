@@ -1,159 +1,77 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Calendar, MapPin, Building } from "lucide-react";
-import { Badge, Button } from "./atoms";
 import { IExperience } from "@types";
+import { cn } from "@lib/utils";
+import { Container, Reveal, SectionHeader } from "./Section";
 
-export const Experience = ({
-  data,
-  cv_url,
-}: {
-  data: Array<IExperience>;
-  cv_url: string;
-}) => {
+// "Falcon Focus (Remotely)" -> { name: "Falcon Focus", mode: "Remote" }
+const parseCompany = (company?: string | null) => {
+  const match = company?.match(/^(.*?)\s*\((.*)\)\s*$/);
+  const mode = match?.[2].replace(/ly$/i, "");
+  return { name: match?.[1] ?? company ?? "", mode };
+};
+
+export const Experience = ({ data }: { data: Array<IExperience> }) => {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-12 gap-4 lg:gap-8">
-        {/* Section Header */}
-        <motion.div
-          className="col-span-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-            Professional Experience
-          </h2>
-          <p className="text-muted-foreground text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mt-4 sm:mt-6">
-            My journey in Front-End Development, from React development to
-            senior roles
-          </p>
-        </motion.div>
+    <Container>
+      <SectionHeader
+        eyebrow="Experience"
+        title="Professional experience."
+        description="Roles across SaaS, cybersecurity, e-commerce, and agency work — from React development to senior frontend ownership."
+      />
 
-        {/* Experience Timeline */}
-        <div className="col-span-12">
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 transform md:-translate-x-1/2" />
+      <div className="mt-16 border-b border-border lg:mt-20">
+        {data.map((experience, index) => {
+          const { name, mode } = parseCompany(experience.company);
+          const current = /present/i.test(experience.period ?? "");
+          return (
+            <Reveal key={index}>
+              <article className="grid grid-cols-12 gap-y-6 border-t border-border py-10 lg:gap-x-10 lg:py-14">
+                <div className="col-span-12 font-mono text-xs lg:col-span-3">
+                  <p className="flex items-center gap-2 text-foreground">
+                    <span
+                      className={cn(
+                        "size-1.5 rounded-full",
+                        current ? "bg-highlight" : "bg-subtle-foreground/50",
+                      )}
+                    />
+                    {experience.period?.replace(/\s*-\s*/, " — ")}
+                  </p>
+                  <p className="mt-2 pl-3.5 text-subtle-foreground">
+                    {[mode, experience.location].filter(Boolean).join(" · ")}
+                  </p>
+                </div>
 
-            {/* Experience Items */}
-            <div className="space-y-10 sm:space-y-14">
-              {data.map((experience, index) => (
-                <motion.div
-                  key={index}
-                  className={`relative flex flex-col md:flex-row items-start md:items-center ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  {/* Timeline Dot */}
-                  <div className="absolute left-[14px] sm:left-[15px] md:left-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-primary rounded-full border-4 border-background transform md:-translate-x-1/2 mt-6" />
+                <div className="col-span-12 lg:col-span-4">
+                  <h3 className="font-display text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">
+                    {name}
+                  </h3>
+                  <p className="mt-2 text-muted-foreground">
+                    {experience.title}
+                  </p>
+                  {experience.tech?.length ? (
+                    <p className="mt-5 font-mono text-[11px] leading-5 text-subtle-foreground">
+                      {experience.tech.join(" · ")}
+                    </p>
+                  ) : null}
+                </div>
 
-                  {/* Content */}
-                  <div
-                    className={`ml-12 md:ml-0 md:w-5/12 ${
-                      index % 2 === 0 ? "md:pr-10" : "md:pl-10 md:order-first"
-                    }`}
-                  >
-                    <motion.div
-                      className="bg-card p-5 sm:p-6 lg:p-8 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300"
-                      whileHover={{ y: -5 }}
+                <ul className="col-span-12 space-y-3 lg:col-span-5">
+                  {experience.description?.map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex gap-4 leading-relaxed text-muted-foreground"
                     >
-                      {/* Header */}
-                      <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
-                          {experience.title}
-                        </h3>
-
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm sm:text-base flex-wrap">
-                          <div className="flex items-center space-x-2 text-primary">
-                            <Building size={16} className="sm:w-5 sm:h-5" />
-                            <span className="font-medium">
-                              {experience.company}
-                            </span>
-                          </div>
-
-                          <div className="flex items-center space-x-2 text-muted-foreground">
-                            <MapPin size={16} className="sm:w-5 sm:h-5" />
-                            <span>{experience.location}</span>
-                          </div>
-
-                          <div className="flex items-center space-x-2 text-muted-foreground">
-                            <Calendar size={16} className="sm:w-5 sm:h-5" />
-                            <span>{experience.period}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-                        <h4 className="font-semibold text-foreground text-sm sm:text-base">
-                          Key Responsibilities:
-                        </h4>
-                        <ul className="space-y-2 sm:space-y-3">
-                          {experience?.description?.map((item, i) => (
-                            <li
-                              key={i}
-                              className="flex items-start space-x-2 text-muted-foreground text-xs sm:text-sm leading-relaxed"
-                            >
-                              <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Technologies */}
-                      <div className="space-y-2 sm:space-y-3">
-                        <h4 className="font-semibold text-foreground text-sm sm:text-base">
-                          Technologies & Skills:
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {experience?.tech?.map((tech, i) => (
-                            <Badge key={i} className="text-xs sm:text-sm">
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Download CV Section */}
-        <motion.div
-          className="col-span-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-card p-6 lg:p-8 rounded-xl border border-border shadow-lg hover:shadow-xl transition-all duration-300 max-w-2xl mx-auto">
-            <h3 className="text-2xl lg:text-3xl font-semibold text-primary mb-4">
-              Want to know more?
-            </h3>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              Download my complete CV to see detailed information about my
-              experience, education, and achievements in front-end development.
-            </p>
-
-            <Button asChild className="mx-auto w-fit">
-              <a href={cv_url} download target="_blank">
-                Download CV
-              </a>
-            </Button>
-          </div>
-        </motion.div>
+                      <span className="mt-[0.8em] h-px w-3 shrink-0 bg-subtle-foreground" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+          );
+        })}
       </div>
-    </div>
+    </Container>
   );
 };

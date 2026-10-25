@@ -39,17 +39,44 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-highlight: var(--highlight);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.6;
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* Small uppercase mono label used above headings */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--highlight);
+}
+
+/* Diagonal hatching for empty media frames */
+.hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--foreground) 4%, transparent) 0 1px,
+    transparent 1px 14px
+  );
 }
 
 /* Scrollbar */
@@ -62,12 +89,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background: var(--input);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.961 0.02 85.87 / 0.8);
+  background: var(--subtle-foreground);
 }
 
 /* Selection */

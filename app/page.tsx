@@ -6,6 +6,7 @@ import {
   Projects,
   Experience,
   Contact,
+  Footer,
 } from "@components";
 import { supabase } from "@lib/supabaseClient";
 
@@ -24,17 +25,38 @@ export default async function Page() {
     .select("*");
   const { data: contactsData } = await supabase.from("contacts").select("*");
 
+  const hero = heroData?.[0];
+  const location = contactsData
+    ?.find((c) => c.title?.toLowerCase() === "location")
+    ?.value?.split(",")
+    .slice(-2)
+    .join(",")
+    .trim();
+
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation cv_url={hero?.cv_url} />
 
-      <section id="home" className="pt-24 pb-16 lg:pt-32">
-        <Hero data={heroData?.[0]} />
+      <section id="home" className="pt-16">
+        <Hero
+          data={hero}
+          showcase={(projectsData ?? []).filter((p) => p.featured)}
+          location={location}
+        />
       </section>
-      <section id="about" className="py-16">
+      <section id="work" className="border-t border-border py-24 lg:py-32">
+        <Projects projects={projectsData as any} />
+      </section>
+      <section id="about" className="border-t border-border py-24 lg:py-32">
         <About data={aboutData as any} />
       </section>
-      <section id="skills" className="py-16">
+      <section
+        id="experience"
+        className="border-t border-border py-24 lg:py-32"
+      >
+        <Experience data={experienceData as any} />
+      </section>
+      <section id="skills" className="border-t border-border py-24 lg:py-32">
         <Skills
           data={{
             skills: skillsData as any,
@@ -42,20 +64,11 @@ export default async function Page() {
           }}
         />
       </section>
-      <section id="projects" className="py-16">
-        <Projects projects={projectsData as any} />
+      <section id="contact" className="border-t border-border py-24 lg:py-32">
+        <Contact data={contactsData as any} cv_url={hero?.cv_url} />
       </section>
 
-      <section id="experience" className="py-16">
-        <Experience
-          data={experienceData as any}
-          cv_url={heroData?.[0].cv_url}
-        />
-      </section>
-
-      <section id="contact" className="py-16">
-        <Contact data={contactsData as any} />
-      </section>
+      <Footer name={hero?.name} />
     </main>
   );
 }

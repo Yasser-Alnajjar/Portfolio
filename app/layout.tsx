@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Poppins } from "next/font/google";
-import { GoToTop, ThemeProvider, Toaster } from "@components";
+import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { ThemeProvider, Toaster } from "@components";
 
 export const metadata: Metadata = {
   title: "Yasser Alnajjar - Front-End Developer (React.js - Next.js)",
@@ -9,9 +9,16 @@ export const metadata: Metadata = {
     "Dynamic Next.js Developer with a proven track record in enhancing user experience and optimizing application performance. Expert in React.js, Next.js, and modern front-end technologies.",
 };
 
-const poppins = Poppins({
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["500", "600", "700"],
+  variable: "--font-inter-tight",
+});
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
 });
 
 export default function RootLayout({
@@ -20,19 +27,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body
-        className={`${poppins.className} bg-background text-foreground antialiased`}
-      >
+    <html
+      lang="en"
+      className={`dark ${inter.variable} ${interTight.variable} ${jetbrains.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="bg-background font-sans text-foreground antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           <Toaster richColors />
           {children}
-          <GoToTop />
         </ThemeProvider>
       </body>
     </html>

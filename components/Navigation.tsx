@@ -1,149 +1,155 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Download, Menu, X } from "lucide-react";
 import { ToggleTheme } from "./atoms/toggle-theme";
+import { Container } from "./Section";
+import { cn, scrollToSection } from "@lib/utils";
 
-export const Navigation = () => {
+const navItems = [
+  { name: "Work", href: "#work" },
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
+];
+
+export const Navigation = ({ cv_url }: { cv_url?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const observerOptions = {
-      rootMargin: "-20% 0px -80% 0px",
-      threshold: 0,
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -65% 0px", threshold: 0 },
+    );
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          setActiveSection(id);
-        }
-      });
-    }, observerOptions);
-
-    // Observe all sections
-    const sections = document.querySelectorAll("section[id], div[id]");
-    sections.forEach((section) => {
-      if (section.id) {
-        observer.observe(section);
-      }
-    });
+    document
+      .querySelectorAll("section[id]")
+      .forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
-  ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const go = (href: string) => {
+    scrollToSection(href);
     setIsOpen(false);
-  };
-
-  const isActive = (href: string) => {
-    const sectionId = href.replace("#", "");
-    return activeSection === sectionId;
   };
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-card/95 backdrop-blur-sm border-b border-border shadow-sm"
-          : "bg-transparent"
-      }`}
+      className={cn(
+        "fixed top-0 z-50 w-full border-b transition-colors duration-300",
+        scrolled || isOpen
+          ? "border-border bg-background/80 backdrop-blur-md"
+          : "border-transparent bg-transparent",
+      )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <span className="text-xl font-bold text-gradient">
-              Yasser Alnajjar
-            </span>
+      <Container>
+        <div className="flex h-16 items-center justify-between">
+          <button
+            onClick={() => go("#home")}
+            className="cursor-pointer font-mono text-xs font-medium uppercase tracking-[0.24em] text-foreground"
+          >
+            Yasser Alnajjar
+          </button>
+
+          <div className="hidden items-center gap-7 md:flex">
+            {navItems.map((item) => {
+              const active = activeSection === item.href.slice(1);
+              return (
+                <button
+                  key={item.name}
+                  onClick={() => go(item.href)}
+                  className={cn(
+                    "relative cursor-pointer py-1 text-sm transition-colors",
+                    active
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {item.name}
+                  <span
+                    className={cn(
+                      "absolute inset-x-0 -bottom-1 mx-auto h-px bg-highlight transition-all duration-300",
+                      active ? "w-full" : "w-0",
+                    )}
+                  />
+                </button>
+              );
+            })}
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className={`cursor-pointer transition-all duration-300 font-medium ${
-                  isActive(item.href)
-                    ? "text-primary font-semibold"
-                    : "text-foreground hover:text-primary"
-                }`}
+          <div className="flex items-center gap-2">
+            <ToggleTheme className="size-9 rounded-full bg-transparent" />
+            {cv_url && (
+              <a
+                href={cv_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden h-9 items-center gap-2 rounded-full border border-input px-4 text-sm text-foreground transition-colors hover:border-foreground/40 hover:bg-secondary sm:inline-flex"
+                download
               >
-                {item.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Right side - Theme Toggle and Mobile menu */}
-          <div className="flex items-center gap-4">
-            {/* Theme Toggle */}
-            <div className="hidden sm:block">
-              <ToggleTheme />
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="text-muted-foreground hover:text-primary transition-colors duration-300"
-              >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
+                <Download size={14} />
+                Download CV
+              </a>
+            )}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+              className="flex size-9 items-center justify-center rounded-full border border-input text-foreground md:hidden"
+            >
+              {isOpen ? <X size={16} /> : <Menu size={16} />}
+            </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden bg-card border-t border-border shadow-lg">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {/* Theme Toggle in Mobile Menu */}
-              <div className="px-3 py-2">
-                <ToggleTheme />
-              </div>
-
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`block w-full text-left px-3 py-2 rounded-md transition-all duration-300 font-medium ${
-                    isActive(item.href)
-                      ? "text-primary font-semibold bg-primary/10 border-l-2 border-primary"
-                      : "text-muted-foreground hover:text-primary hover:bg-muted"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
+          <div className="flex flex-col border-t border-border py-3 md:hidden">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => go(item.href)}
+                className={cn(
+                  "flex items-center justify-between py-3 text-left text-base",
+                  activeSection === item.href.slice(1)
+                    ? "text-foreground"
+                    : "text-muted-foreground",
+                )}
+              >
+                {item.name}
+                {activeSection === item.href.slice(1) && (
+                  <span className="size-1.5 rounded-full bg-highlight" />
+                )}
+              </button>
+            ))}
+            {cv_url && (
+              <a
+                href={cv_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="mt-2 inline-flex h-11 items-center justify-center gap-2 rounded-full border border-input text-sm"
+              >
+                <Download size={14} />
+                Download CV
+              </a>
+            )}
           </div>
         )}
-      </div>
+      </Container>
     </nav>
   );
 };
