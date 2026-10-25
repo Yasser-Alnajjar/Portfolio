@@ -5,7 +5,10 @@ export async function GET() {
   try {
     const { data: projects, error } = await supabase
       .from("projects")
-      .select("*");
+      .select("*")
+      .order("featured_order", { ascending: true })
+      .order("title", { ascending: true })
+      .order("id", { ascending: true });
 
     if (error) {
       return NextResponse.json(

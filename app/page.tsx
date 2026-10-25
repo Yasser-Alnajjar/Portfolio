@@ -19,7 +19,12 @@ export default async function Page() {
   const { data: additionalData } = await supabase
     .from("additional_skills")
     .select("*");
-  const { data: projectsData } = await supabase.from("projects").select("*");
+  const { data: projectsData } = await supabase
+    .from("projects")
+    .select("*")
+    .order("featured_order", { ascending: true })
+    .order("title", { ascending: true })
+    .order("id", { ascending: true });
   const { data: experienceData } = await supabase
     .from("experience")
     .select("*");

@@ -45,6 +45,7 @@ CREATE TABLE projects (
   image TEXT,
   tech TEXT[],
   featured BOOLEAN DEFAULT false,
+  featured_order INTEGER NOT NULL DEFAULT 0,
   liveUrl TEXT,
   githubUrl TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
