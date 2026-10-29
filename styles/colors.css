@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Light — warm paper with an olive-lime accent */
+/* Light — warm paper with a terracotta accent */
 :root {
   --background: #f5f3ec;
   --foreground: #161714;
@@ -8,9 +8,11 @@
   --card-foreground: #161714;
   --popover: #fbfaf5;
   --popover-foreground: #161714;
-  --primary: #b8e45a;
-  --primary-foreground: #11140b;
-  --highlight: #4c7410;
+
+  --primary: #d47750;
+  --primary-foreground: #ffffff;
+  --highlight: #a94f30;
+
   --secondary: #ebe8df;
   --secondary-foreground: #161714;
   --muted: #ebe8df;
@@ -18,25 +20,31 @@
   --subtle-foreground: #8b8880;
   --accent: #e6e3d9;
   --accent-foreground: #161714;
+
   --destructive: #c8413d;
   --destructive-foreground: #ffffff;
   --border: #dedad0;
   --input: #d6d2c7;
-  --ring: #4c7410;
-  --chart-1: #4c7410;
-  --chart-2: #b8e45a;
-  --chart-3: #d08a3b;
-  --chart-4: #4e7bb8;
+  --ring: #d47750;
+
+  /* Warm chart palette */
+  --chart-1: #a94f30;
+  --chart-2: #d47750;
+  --chart-3: #d6a15d;
+  --chart-4: #a66b61;
   --chart-5: #8b8880;
+
   --sidebar: #efece4;
   --sidebar-foreground: #161714;
-  --sidebar-primary: #161714;
-  --sidebar-primary-foreground: #f5f3ec;
+  --sidebar-primary: #d47750;
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #e6e3d9;
   --sidebar-accent-foreground: #161714;
   --sidebar-border: #dedad0;
-  --sidebar-ring: #4c7410;
+  --sidebar-ring: #d47750;
+
   --radius: 0.75rem;
+
   --shadow-2xs: 0px 1px 2px 0px hsl(60 10% 10% / 0.05);
   --shadow-xs: 0px 1px 2px 0px hsl(60 10% 10% / 0.05);
   --shadow-sm: 0px 1px 3px 0px hsl(60 10% 10% / 0.08);
@@ -45,14 +53,15 @@
   --shadow-lg: 0px 12px 32px -8px hsl(60 10% 10% / 0.14);
   --shadow-xl: 0px 20px 48px -12px hsl(60 10% 10% / 0.18);
   --shadow-2xl: 0px 32px 64px -16px hsl(60 10% 10% / 0.24);
+
   /* Status */
-  --color-info: oklch(60% 0.1 230);
+  --color-info: oklch(55% 0.025 70);
   --color-success: oklch(58% 0.15 140);
   --color-warning: oklch(70% 0.15 75);
   --color-error: oklch(58% 0.2 25);
 }
 
-/* Dark — near-black ink with a lime accent */
+/* Dark — deep charcoal with a warm copper accent */
 .dark {
   --background: #0e0f0d;
   --foreground: #edeae2;
@@ -60,38 +69,47 @@
   --card-foreground: #edeae2;
   --popover: #171815;
   --popover-foreground: #edeae2;
-  --primary: #c6f36b;
-  --primary-foreground: #11140b;
-  --highlight: #c6f36b;
+
+  --primary: #ed9a73;
+  --primary-foreground: #1b100b;
+  --highlight: #ed9a73;
+
   --secondary: #1b1c19;
   --secondary-foreground: #edeae2;
   --muted: #1b1c19;
   --muted-foreground: #a3a097;
   --subtle-foreground: #6f6d66;
-  --accent: #20211d;
+  --accent: #24201d;
   --accent-foreground: #edeae2;
+
   --destructive: #f2716b;
   --destructive-foreground: #ffffff;
-  --border: #23241f;
-  --input: #2c2d28;
-  --ring: #c6f36b;
-  --chart-1: #c6f36b;
-  --chart-2: #8fb34a;
-  --chart-3: #e0a35e;
-  --chart-4: #7ea6dc;
-  --chart-5: #6f6d66;
+  --border: #29241f;
+  --input: #342c26;
+  --ring: #ed9a73;
+
+  /* Warm chart palette */
+  --chart-1: #ed9a73;
+  --chart-2: #c87550;
+  --chart-3: #e0b16f;
+  --chart-4: #a66b61;
+  --chart-5: #8b8880;
+
   --sidebar: #121310;
   --sidebar-foreground: #edeae2;
-  --sidebar-primary: #c6f36b;
-  --sidebar-primary-foreground: #11140b;
-  --sidebar-accent: #20211d;
+  --sidebar-primary: #ed9a73;
+  --sidebar-primary-foreground: #1b100b;
+  --sidebar-accent: #24201d;
   --sidebar-accent-foreground: #edeae2;
-  --sidebar-border: #23241f;
-  --sidebar-ring: #c6f36b;
+  --sidebar-border: #29241f;
+  --sidebar-ring: #ed9a73;
+
   --shadow-lg: 0px 24px 48px -16px hsl(0 0% 0% / 0.6);
   --shadow-xl: 0px 32px 64px -16px hsl(0 0% 0% / 0.7);
   --shadow-2xl: 0px 40px 80px -20px hsl(0 0% 0% / 0.8);
-  --color-info: oklch(78% 0.1 220);
+
+  /* Status */
+  --color-info: oklch(75% 0.025 70);
   --color-success: oklch(82% 0.17 125);
   --color-warning: oklch(80% 0.14 80);
   --color-error: oklch(70% 0.17 25);
@@ -111,6 +129,7 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+
   /* Status */
   --color-info: var(--color-info);
   --color-success: var(--color-success);

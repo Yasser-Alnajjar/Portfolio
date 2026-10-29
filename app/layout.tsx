@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
-import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider, Toaster } from "@components";
 
 export const metadata: Metadata = {
@@ -9,16 +9,25 @@ export const metadata: Metadata = {
     "Dynamic Next.js Developer with a proven track record in enhancing user experience and optimizing application performance. Expert in React.js, Next.js, and modern front-end technologies.",
 };
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-inter-tight",
+const inter = localFont({
+  src: "../fonts/Inter.ttf",
+  variable: "--font-inter",
+  weight: "100 900",
+  display: "swap",
 });
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
+
+const interTight = localFont({
+  src: "../fonts/InterTight.ttf",
+  variable: "--font-inter-tight",
+  weight: "100 900",
+  display: "swap",
+});
+
+const jetbrains = localFont({
+  src: "../fonts/JetBrainsMono.ttf",
   variable: "--font-jetbrains",
+  weight: "100 800",
+  display: "swap",
 });
 
 export default function RootLayout({
